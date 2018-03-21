@@ -8,4 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!--&lt;!&ndash;Styl dla ekranu rejestracji użytkownika&ndash;&gt;-->
+    <!--<style name="start_mibb" parent="AppTheme">-->
+        <!--<item name="android:textSize">18sp</item>-->
+        <!--<item name="textColorHint">@color/colorPrimary</item>-->
+        <!--<item name="editTextColor">@color/colorPrimaryDark</item>-->
+    <!--</style>-->
+
 </resources>

@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">MIBB</string>
+
+    <!--Ekran startowy dla "rejestracji" użytkownika-->
+    <string name="imie">Imię</string>
+    <string name="nazwisko">Nazwisko</string>
+    <string name="numerTelefonu">Numer kontaktowy</string>
+    <string name="email">Adres email</string>
+    <string name="wojewodztwo">Województwo</string>
+    <string name="powiat">Powiat</string>
+    <string name="gmina">Gmina</string>
+    <string name="miejscowosc">Miejscowość</string>
+    <string name="kodPocztowy">Kod pocztowy</string>
+    <string name="nrDomu">Numer domu</string>
+
+    <string name="zapisz">Zapisz</string>
+
+
+
 </resources>
