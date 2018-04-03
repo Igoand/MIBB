@@ -2,6 +2,7 @@
     <string name="app_name">MIBB</string>
 
     <!--Ekran startowy dla "rejestracji" użytkownika-->
+    <string name="rejestracja">Rejestracja obserwatora</string>
     <string name="imie">Imię</string>
     <string name="nazwisko">Nazwisko</string>
     <string name="numerTelefonu">Numer kontaktowy</string>
@@ -12,8 +13,9 @@
     <string name="miejscowosc">Miejscowość</string>
     <string name="kodPocztowy">Kod pocztowy</string>
     <string name="nrDomu">Numer domu</string>
+    <string name="ulica">Ulica</string>
 
-    <string name="zapisz">Zapisz</string>
+    <string name="btnZapisz">Zapisz</string>
 
 
 

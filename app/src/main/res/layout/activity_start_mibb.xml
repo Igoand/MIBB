@@ -4,23 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ian.igoand.mibb.StartMIBB">
-    <!--android:theme="@style/start_mibb"-->
+    tools:context="com.ian.igoand.mibb.StartMIBB"
 
+    android:background="@color/baackground"    >
+
+    <!--hints w pliku @string/-->
 
     <EditText
         android:id="@+id/inputImie"
-        android:hint="@string/imie"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
+        android:hint="@string/imie"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textRejestracja" />
 
     <EditText
         android:id="@+id/inputNazwisko"
@@ -114,36 +116,39 @@
 
     <EditText
         android:id="@+id/inputKodPocztowy"
-        android:hint="@string/kodPocztowy"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
+        android:hint="@string/kodPocztowy"
         android:inputType="textPostalAddress"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputMiejscowosc" />
+        app:layout_constraintTop_toBottomOf="@+id/inputUlica" />
 
     <EditText
         android:id="@+id/inputNrDomu"
-        android:hint="@string/nrDomu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
+        android:hint="@string/nrDomu"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputKodPocztowy" />
 
     <Button
         android:id="@+id/buttonZapisz"
-        android:text="@string/zapisz"
+        android:text="@string/btnZapisz"
+        android:background="@color/btnZapisz"
+        android:textSize="@dimen/button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -153,5 +158,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputNrDomu" />
+
+    <TextView
+        android:id="@+id/textRejestracja"
+        android:textStyle="bold"
+        android:textSize="@dimen/naglowek"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/rejestracja"
+        app:layout_constraintBottom_toTopOf="@+id/inputImie"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/inputUlica"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputMiejscowosc"
+        android:hint="@string/ulica"/>
 
 </android.support.constraint.ConstraintLayout>
