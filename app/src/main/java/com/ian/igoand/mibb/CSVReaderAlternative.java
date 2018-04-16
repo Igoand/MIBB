@@ -6,26 +6,28 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class CSVReaderAlternative {
-    public void main(Context kontekst, String sciezkaPliku) throws IOException {
-        InputStream inputStream = kontekst.getResources().openRawResource(sciezkaPliku);
-        odczytPliku(inputStream);
-    }
+    public List<String> odczytaneDane(Context kontekst, int rawId) throws IOException {
+        InputStream inputStream = kontekst.getResources().openRawResource(rawId);
 
-    public static Set odczytPliku(InputStream inputStream) throws IOException {
-        Set<String> odczytaneWiersze = new HashSet<>();
+
+        List<String> odczytaneWiersze = new ArrayList<String>();
         InputStreamReader inputReader = new InputStreamReader(inputStream);
         BufferedReader bufferedReader = new BufferedReader(inputReader);
         int nrLinii=0;
 
-        while(bufferedReader.readLine()!=null) {
-            odczytaneWiersze.add(bufferedReader.readLine());
-            nrLinii++;
-        }
 
+        while(bufferedReader.ready()) {
+            String linia = bufferedReader.readLine();
+            odczytaneWiersze.add(linia);
+            nrLinii++;
+            System.out.println(nrLinii);
+        }
         return odczytaneWiersze;
     }
 }

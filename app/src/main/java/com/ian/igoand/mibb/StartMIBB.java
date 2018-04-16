@@ -1,18 +1,11 @@
 package com.ian.igoand.mibb;
 
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 public class StartMIBB extends AppCompatActivity {
 
@@ -30,8 +23,6 @@ public class StartMIBB extends AppCompatActivity {
     EditText inputKodPocztowy;
     EditText inputNrDomu;
 
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,13 +40,16 @@ public class StartMIBB extends AppCompatActivity {
         teryt.szukajGmine(wprowadzGmine, this, android.R.layout.simple_list_item_1);
 
 
+
+        // Próba odczytania danych z CSV
         CSVReaderAlternative csvRead = new CSVReaderAlternative();
 
+
+        int rawId = R.raw.miejscowosci_import_file;
         try {
-            csvRead.main(this, "R.raw.miejscowosci_import_file");
+            csvRead.odczytaneDane(this, rawId);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }
