@@ -1,16 +1,19 @@
 package com.ian.igoand.mibb;
 
 import android.content.Context;
+import android.provider.ContactsContract;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
 public class PrzygotujDaneTERYT {
 
 
+
     void pobierzDaneTeryt(Context kontekst, String typDanychTeryt){
         DatabaseHelper mibbDB = new DatabaseHelper(kontekst);
-
     }
+
+
 
     void szukajWojewodztwo(AutoCompleteTextView obiekt, Context kontekst, int zrodlo){
         String[] nazwyWojewodztwList = {"test"};
