@@ -28,28 +28,36 @@ public class StartMIBB extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_mibb);
 
-        teryt.pobierzDaneTeryt(this, "test");
 
+        // Autocomplete z wyborem wojewodztwa
         AutoCompleteTextView wprowadzWojewodztwo = (AutoCompleteTextView) findViewById(R.id.inputWojewodztwo);
-        teryt.szukajWojewodztwo(wprowadzWojewodztwo, this, android.R.layout.simple_list_item_1);
-
-        AutoCompleteTextView wprowadzPowiat = (AutoCompleteTextView) findViewById(R.id.inputPowiat);
-        teryt.szukajPowiat(wprowadzPowiat, this, android.R.layout.simple_list_item_1);
-
-        AutoCompleteTextView wprowadzGmine = (AutoCompleteTextView) findViewById(R.id.inputGmina);
-        teryt.szukajGmine(wprowadzGmine, this, android.R.layout.simple_list_item_1);
-
-
-
-        // Próba odczytania danych z CSV
-        CSVReaderAlternative csvRead = new CSVReaderAlternative();
-
-
-        int rawId = R.raw.miejscowosci_import_file;
         try {
-            csvRead.odczytaneDane(this, rawId);
+            teryt.szukajWojewodztwo(wprowadzWojewodztwo, this, android.R.layout.simple_list_item_1);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        AutoCompleteTextView wprowadzPowiat = (AutoCompleteTextView) findViewById(R.id.inputPowiat);
+        try {
+            teryt.szukajPowiat(wprowadzPowiat, this, android.R.layout.simple_list_item_1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        AutoCompleteTextView wprowadzGmine = (AutoCompleteTextView) findViewById(R.id.inputGmina);
+        try {
+            teryt.szukajGmine(wprowadzGmine, this, android.R.layout.simple_list_item_1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        AutoCompleteTextView wprowadzMiejscowosc = (AutoCompleteTextView) findViewById(R.id.inputMiejscowosc);
+        try {
+            teryt.szukajGmine(wprowadzMiejscowosc, this, android.R.layout.simple_list_item_1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }
