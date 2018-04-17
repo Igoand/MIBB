@@ -1,56 +1,33 @@
 package com.ian.igoand.mibb;
 
-import android.os.Build;
-import android.support.annotation.RequiresApi;
+import android.content.Context;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class CSVReader {
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public void main(String sciezkaPliku) {
-        long startTime = System.nanoTime();
-
-        String[] odczyt = odczytajPlik(sciezkaPliku);
-
-        long stopTime = System.nanoTime();
-        System.out.print("Plik odczytany w czasie: " + (stopTime - startTime) / 1000000);
-    }
+    public List<String> odczytaneDane(Context kontekst, int rawId) throws IOException {
+        InputStream inputStream = kontekst.getResources().openRawResource(rawId);
 
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static String[] odczytajPlik(String nazwaPliku) {
+        List<String> odczytaneWiersze = new ArrayList<String>();
+        InputStreamReader inputReader = new InputStreamReader(inputStream);
+        BufferedReader bufferedReader = new BufferedReader(inputReader);
+        int nrLinii=0;
 
 
-        // Tworzę obiekt typu Path
-        Path sciezka = Paths.get(nazwaPliku);
-        // Lista będzie przechowywała kolejne linie odczytane z pliku jako String
-        ArrayList<String> odczyt = new ArrayList<>();
-        try {
-            // odczyt wszystkich linii pliku i umieszczenie w liscie
-            odczyt = (ArrayList) Files.readAllLines(sciezka);
-        } catch (IOException ex) {
-            System.out.println("Brak pliku! Kod błędu: " + ex);
-        }
-
-
-        // Konwersja odczytanych łańcuchów znaków i umieszenie ich w tablicy
-
-        // Tablica dla odczytanych danych - deklaracji ilości "kolumn"
-        String[] daneOdczytane = new String[odczyt.size()];
-
-        // Indeksator linni
-        Integer nrLinii = 0;
-
-        // Pobranie następujących linii z listy
-        for (String linia : odczyt) {
-
-            daneOdczytane[nrLinii] = linia;
+        while(bufferedReader.ready()) {
+            String linia = bufferedReader.readLine();
+            odczytaneWiersze.add(linia);
             nrLinii++;
+            //System.out.println(nrLinii);
         }
-        return daneOdczytane;
+        return odczytaneWiersze;
     }
 }

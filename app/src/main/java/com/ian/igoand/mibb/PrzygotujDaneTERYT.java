@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class PrzygotujDaneTERYT {
 
-    CSVReaderAlternative czytajCSV = new CSVReaderAlternative();
+    CSVReader czytajCSV = new CSVReader();
 
 
     void szukajWojewodztwo(AutoCompleteTextView obiekt, Context kontekst, int zrodlo) throws IOException {
@@ -18,7 +18,7 @@ public class PrzygotujDaneTERYT {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(kontekst, zrodlo, nazwyWojewodztwList);
 
         obiekt.setAdapter(adapter);
-        obiekt.setThreshold(2);
+        obiekt.setThreshold(4);
         obiekt.setAdapter(adapter);
     }
 
@@ -28,7 +28,7 @@ public class PrzygotujDaneTERYT {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(kontekst, zrodlo, nazwyPowiatow);
 
         obiekt.setAdapter(adapter);
-        obiekt.setThreshold(3);
+        obiekt.setThreshold(4);
         obiekt.setAdapter(adapter);
     }
 
@@ -48,7 +48,7 @@ public class PrzygotujDaneTERYT {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(kontekst, zrodlo, nazwyMiejscowosci);
 
         obiekt.setAdapter(adapter);
-        obiekt.setThreshold(4);
+        obiekt.setThreshold(6);
         obiekt.setAdapter(adapter);
     }
 }
