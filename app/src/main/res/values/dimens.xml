@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="naglowek">35sp</dimen>
-    <dimen name="editText">35sp</dimen>
-    <dimen name="button">30sp</dimen>
+    <dimen name="naglowek">24sp</dimen>
+    <dimen name="editText">18sp</dimen>
+    <dimen name="button">22sp</dimen>
 </resources>

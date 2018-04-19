@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--Primary Colors-->
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="baackground">#a5d6a7</color>
 
-    <!--Buttons-->
-    <color name="btnZapisz">#2e7d32</color>
-    <color name="btnAnuluj">#d50000</color>
+    <color name="background_material_light_1">#fff8f8</color>
+    <color name="accent_material_light">#40ff70</color>
+    <color name="primary_material_light">#5eaf00</color>
+
 </resources>

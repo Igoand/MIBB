@@ -20,10 +20,6 @@ public class StartMIBB extends AppCompatActivity {
     EditText inputNazwisko;
     EditText inputEmail;
     EditText inputTelefon;
-    AutoCompleteTextView inputWojewodztwo;
-    AutoCompleteTextView inputPowiat;
-    AutoCompleteTextView inputGmina;
-    AutoCompleteTextView inputMiejscowosc;
     EditText inputUlica;
     EditText inputKodPocztowy;
     EditText inputNrDomu;
@@ -32,68 +28,70 @@ public class StartMIBB extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start_mibb);
+        setContentView(R.layout.activity_edycja_operatora_mibb);
 
         //Inicjalizacja zmiennych
-        inputImie = (EditText) findViewById(R.id.inputImie);
-        inputNazwisko = (EditText) findViewById(R.id.inputNazwisko);
-        inputEmail = (EditText) findViewById(R.id.inputEmail);
-        inputTelefon = (EditText) findViewById(R.id.inputTelefon);
-        inputUlica = (EditText) findViewById(R.id.inputUlica);
-        inputKodPocztowy = (EditText) findViewById(R.id.inputKodPocztowy);
-        inputNrDomu = (EditText) findViewById(R.id.inputNrDomu);
+        inputImie = findViewById(R.id.inputImie);
+        inputNazwisko = findViewById(R.id.inputNazwisko);
+        inputEmail = findViewById(R.id.inputEmail);
+        inputTelefon = findViewById(R.id.inputTelefon);
+        inputUlica = findViewById(R.id.inputUlica);
+        inputKodPocztowy = findViewById(R.id.inputKodPocztowy);
+        inputNrDomu = findViewById(R.id.inputNrDomu);
         btnZapisz = findViewById(R.id.buttonZapisz);
 
-
         // Autocomplete z wyborem wojewodztwa
-        final AutoCompleteTextView wprowadzWojewodztwo = (AutoCompleteTextView) findViewById(R.id.inputWojewodztwo);
+        final AutoCompleteTextView wprowadzWojewodztwo = findViewById(R.id.inputWojewodztwo);
         try {
             teryt.szukajWojewodztwo(wprowadzWojewodztwo, this, android.R.layout.simple_list_item_1);
         } catch (IOException e) {
             e.printStackTrace();
         }
         // Autocomplete z wyborem powiatu
-        final AutoCompleteTextView wprowadzPowiat = (AutoCompleteTextView) findViewById(R.id.inputPowiat);
+        final AutoCompleteTextView wprowadzPowiat = findViewById(R.id.inputPowiat);
         try {
             teryt.szukajPowiat(wprowadzPowiat, this, android.R.layout.simple_list_item_1);
         } catch (IOException e) {
             e.printStackTrace();
         }
         // Autocomplete z wyborem gminy
-        final AutoCompleteTextView wprowadzGmine = (AutoCompleteTextView) findViewById(R.id.inputGmina);
+        final AutoCompleteTextView wprowadzGmine = findViewById(R.id.inputGmina);
         try {
             teryt.szukajGmine(wprowadzGmine, this, android.R.layout.simple_list_item_1);
         } catch (IOException e) {
             e.printStackTrace();
         }
         // Autocomplete z wyborem miejscowosci
-        final AutoCompleteTextView wprowadzMiejscowosc = (AutoCompleteTextView) findViewById(R.id.inputMiejscowosc);
+        final AutoCompleteTextView wprowadzMiejscowosc = findViewById(R.id.inputMiejscowosc);
         try {
             teryt.szukajGmine(wprowadzMiejscowosc, this, android.R.layout.simple_list_item_1);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-
-        // Ustawinie akcji przy przyciśnięciu buttona
+        // Ustawinie akcji po przyciśnięciu buttona
+//        Zapisanie wprowadzonych danych
         btnZapisz.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View view) {
-                operator.setImie(tekst.pobierzStringPola(inputImie));
-                operator.setNazwisko(tekst.pobierzStringPola(inputNazwisko));
-                operator.setAdresEmail(tekst.pobierzStringPola(inputEmail));
-                operator.setNumerTelefonu(tekst.pobierzStringPola(inputTelefon));
-                operator.setWojewodztwo(tekst.pobierzStringPola(wprowadzWojewodztwo));
-                operator.setPowiat(tekst.pobierzStringPola(wprowadzPowiat));
-                operator.setGmina(tekst.pobierzStringPola(wprowadzGmine));
-                operator.setMiejscowosc(tekst.pobierzStringPola(wprowadzMiejscowosc));
-                operator.setUlica(tekst.pobierzStringPola(inputUlica));
-                operator.setKodPocztowy(tekst.pobierzStringPola(inputKodPocztowy));
-                operator.setNrDomu(tekst.pobierzStringPola(inputNrDomu));
+                                         @Override
+                                         public void onClick(View view) {
+//                                             Wywołanie kolejno metod set do zapisu pól obiektu
+                                             operator.setImie(tekst.pobierzStringPola(inputImie));
+                                             operator.setNazwisko(tekst.pobierzStringPola(inputNazwisko));
+                                             operator.setAdresEmail(tekst.pobierzStringPola(inputEmail));
+                                             operator.setNumerTelefonu(tekst.pobierzStringPola(inputTelefon));
+                                             operator.setWojewodztwo(tekst.pobierzStringPola(wprowadzWojewodztwo));
+                                             operator.setPowiat(tekst.pobierzStringPola(wprowadzPowiat));
+                                             operator.setGmina(tekst.pobierzStringPola(wprowadzGmine));
+                                             operator.setMiejscowosc(tekst.pobierzStringPola(wprowadzMiejscowosc));
+                                             operator.setUlica(tekst.pobierzStringPola(inputUlica));
+                                             operator.setKodPocztowy(tekst.pobierzStringPola(inputKodPocztowy));
+                                             operator.setNrDomu(tekst.pobierzStringPola(inputNrDomu));
 
-                operator.zapiszOperatora(getApplicationContext());
-            }
-        });
+//                                             Wywołanie funkcji zapisującej wprowadzone w formatce dane Operatora(pola obiektu operator) do pliku lokalnego SharedPreferences na urządzeniu
+                                             operator.zapiszOperatora(getApplicationContext());
+                                         }
+                                     }
+        );
     }
 }

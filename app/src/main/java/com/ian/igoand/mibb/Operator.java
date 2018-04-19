@@ -3,7 +3,7 @@ package com.ian.igoand.mibb;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-
+import android.util.Log;
 
 public class Operator {
     // Deklaracja pól obiektu
@@ -18,7 +18,6 @@ public class Operator {
     String ulica;
     String kodPocztowy;
     String nrDomu;
-
 
     String plikOperatora = "DaneOperatora";
 
@@ -39,7 +38,10 @@ public class Operator {
         edytujDaneOperatora.putString("kod", kodPocztowy);
         edytujDaneOperatora.putString("dom", nrDomu);
 
+//        Zapisanie pól obiektu do pliku lokalnego pliku SharedPreferenes
         edytujDaneOperatora.commit();
+
+        Log.i("succes", "Udało się zapisać dane");
 
     }
 

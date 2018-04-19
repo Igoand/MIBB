@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MIBB</string>
 
-    <!--HINT | Ekran startowy dla "rejestracji" użytkownika-->
+    <!--HINT | Ekran edycji dla "rejestracji" użytkownika-->
     <string name="rejestracja">Rejestracja obserwatora</string>
     <string name="imie">Imię</string>
     <string name="nazwisko">Nazwisko</string>
@@ -14,9 +14,13 @@
     <string name="kodPocztowy">Kod pocztowy</string>
     <string name="nrDomu">Numer domu</string>
     <string name="ulica">Ulica</string>
-
     <string name="btnZapisz">Zapisz</string>
 
-
+    <!--HINT | Ekran startowy/menu aplikacji-->
+    <string name="menu">Co chcesz zrobić?</string>
+    <string name="edytujOperatora">Zmień dane operatora</string>
+    <string name="wypelnijFormularz">Wprowadź obserwację</string>
+    <string name="przegladHistorii">Przeglądaj złożone obserwacja</string>
+    <string name="wyslijFormularz">Wyślij kartę obserwacji</string>
 
 </resources>
