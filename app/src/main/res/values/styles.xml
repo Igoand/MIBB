@@ -1,0 +1,37 @@
+<resources>
+
+
+    <!--Android standard font size
+    - 14sp
+    - 18sp
+    - 22sp-->
+
+
+    <!-- Base application theme. -->
+    <style name="mibbTheme" parent="Theme.AppCompat.Light">
+        <item name="android:colorBackground">@color/background_material_light_1</item>
+        <item name="android:colorAccent">@color/accent_material_light</item>
+        <item name="android:colorPrimary">@color/primary_material_light</item>
+        <item name="android:colorButtonNormal">@color/btnBackground</item>
+
+        <!--Wyłączenie górnego paska-->
+<!--        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>-->
+
+        <item name="android:textSize">@dimen/editText</item>
+
+    </style>
+
+    <style name="Label">
+        <item name="android:textSize">@dimen/naglowek</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="stdButton">
+        <item name="android:background">@color/btnBackground</item>
+        <item name="android:textSize">@dimen/button</item>
+    </style>
+
+
+
+</resources>
