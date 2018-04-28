@@ -18,6 +18,7 @@ public class Operator {
     String ulica;
     String kodPocztowy;
     String nrDomu;
+    Boolean czyIstnieje;
 
     String plikOperatora = "DaneOperatora";
 
@@ -37,12 +38,36 @@ public class Operator {
         edytujDaneOperatora.putString("ulica", ulica);
         edytujDaneOperatora.putString("kod", kodPocztowy);
         edytujDaneOperatora.putString("dom", nrDomu);
+        edytujDaneOperatora.putString("czyIstnieje", "true");
 
 //        Zapisanie pól obiektu do pliku lokalnego pliku SharedPreferenes
         edytujDaneOperatora.commit();
 
         Log.i("succes", "Udało się zapisać dane");
+    }
 
+    public String odczytOperatora(Context context) {
+
+        SharedPreferences daneOperatora = context.getSharedPreferences(plikOperatora, Activity.MODE_PRIVATE);
+
+        String danePodstOperatora = "";
+        danePodstOperatora.concat(daneOperatora.getString("imie", null).concat(" ")
+                .concat(daneOperatora.getString("nazwisko", null)).concat(", ")
+                .concat(daneOperatora.getString("ulica", null)).concat(" ")
+                .concat(daneOperatora.getString("dom", null)).concat(", "))
+                .concat(daneOperatora.getString("kod", null).concat(", "))
+                .concat(daneOperatora.getString("miejscowosc", null));
+
+        String mail = "";
+        mail.concat(daneOperatora.getString("email", null));
+
+        String telefon = "";
+        telefon.concat(daneOperatora.getString("telefon", null));
+
+        String czyIstnieje = "false";
+        czyIstnieje = daneOperatora.getString("czyIstnieje", null);
+
+        return czyIstnieje;
     }
 
     public String getImie() {

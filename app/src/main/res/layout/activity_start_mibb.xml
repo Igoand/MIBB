@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#125b00"
+    style="@style/mibbTheme"
     android:visibility="visible">
 
     <TextView
@@ -14,6 +15,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        style="@style/Label"
         android:text="@string/menu"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,47 +23,53 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button4"
-        android:layout_width="500px"
-        android:layout_height="500px"
+        android:id="@+id/menuBtnWprowadzObserwacje"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/wypelnijFormularz"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textMenu" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="500px"
-        android:layout_height="500px"
+        android:id="@+id/menuBtnPrzegladajObserwacje"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@android:color/holo_green_dark"
-        android:text="@string/przegladHistorii"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textMenu" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="500px"
-        android:layout_height="500px"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="@android:color/holo_green_dark"
-        android:text="@string/wyslijFormularz"
+        android:text="@string/przegladHistorii"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+        app:layout_constraintTop_toBottomOf="@+id/menuBtnWprowadzObserwacje" />
 
     <Button
-        android:id="@+id/button3"
-        android:layout_width="500px"
-        android:layout_height="500px"
+        android:id="@+id/menuBtnWyslijKarte"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="@android:color/holo_green_dark"
+        android:text="@string/wyslijFormularz"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menuBtnPrzegladajObserwacje" />
+
+    <Button
+        android:id="@+id/menuBtnZmienDaneOper"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="@string/edytujOperatora"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menuBtnWyslijKarte" />
 
 
 </android.support.constraint.ConstraintLayout>

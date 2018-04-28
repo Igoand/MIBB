@@ -16,18 +16,19 @@ public class CSVReader {
     public List<String> odczytaneDane(Context kontekst, int rawId) throws IOException {
         InputStream inputStream = kontekst.getResources().openRawResource(rawId);
 
-
         List<String> odczytaneWiersze = new ArrayList<String>();
         InputStreamReader inputReader = new InputStreamReader(inputStream);
         BufferedReader bufferedReader = new BufferedReader(inputReader);
-        int nrLinii=0;
+        //int nrLinii=0;
 
-        while(bufferedReader.ready()) {
+        while (bufferedReader.ready()) {
             String linia = bufferedReader.readLine();
-            odczytaneWiersze.add(linia);
-            nrLinii++;
+            odczytaneWiersze.add((String) linia);
+            //nrLinii++;
             //System.out.println(nrLinii);
         }
+        inputReader.close();
+        bufferedReader.close();
         return odczytaneWiersze;
     }
 }

@@ -23,4 +23,14 @@
     <string name="przegladHistorii">Przeglądaj złożone obserwacja</string>
     <string name="wyslijFormularz">Wyślij kartę obserwacji</string>
 
+    <!--Napisy na dropsach | Ekran rejestracji obserwacji-->
+    <string name="lblDaneOperatora">Imię, nazwisko i adres zamieszkania obserwatora</string>
+    <string name="lblMail">e-mail</string>
+    <string name="lblNrTel">telefon</string>
+    <string name="lblData">Data obserwacji</string>
+    <string name="lblNumerKarty">Numer karty</string>
+    <string name="btnAnuluj">Anuluj</string>
+    <string name="btnDalej">Dalej</string>
+
+
 </resources>
