@@ -1,11 +1,9 @@
 <resources>
 
-
     <!--Android standard font size
     - 14sp
     - 18sp
     - 22sp-->
-
 
     <!-- Base application theme. -->
     <style name="mibbTheme" parent="Theme.AppCompat.Light">
@@ -15,8 +13,8 @@
         <item name="android:colorButtonNormal">@color/btnBackground</item>
 
         <!--Wyłączenie górnego paska-->
-<!--        <item name="android:windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>-->
+        <!--        <item name="android:windowActionBar">false</item>
+                <item name="android:windowNoTitle">true</item>-->
 
         <item name="android:textSize">@dimen/editText</item>
 
@@ -31,7 +29,5 @@
         <item name="android:background">@color/btnBackground</item>
         <item name="android:textSize">@dimen/button</item>
     </style>
-
-
 
 </resources>

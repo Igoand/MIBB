@@ -46,27 +46,46 @@ public class Operator {
         Log.i("succes", "Udało się zapisać dane");
     }
 
-    public String odczytOperatora(Context context) {
-
+    public String odczytPodstOperatora(Context context) {
         SharedPreferences daneOperatora = context.getSharedPreferences(plikOperatora, Activity.MODE_PRIVATE);
-
         String danePodstOperatora = "";
-        danePodstOperatora.concat(daneOperatora.getString("imie", null).concat(" ")
-                .concat(daneOperatora.getString("nazwisko", null)).concat(", ")
-                .concat(daneOperatora.getString("ulica", null)).concat(" ")
-                .concat(daneOperatora.getString("dom", null)).concat(", "))
-                .concat(daneOperatora.getString("kod", null).concat(", "))
-                .concat(daneOperatora.getString("miejscowosc", null));
+        danePodstOperatora = danePodstOperatora.concat(daneOperatora.getString("imie", "imie").concat(" ")
+                .concat(daneOperatora.getString("nazwisko", "nazwisko")).concat(", ")
+                .concat(daneOperatora.getString("ulica", "ulica")).concat(" ")
+                .concat(daneOperatora.getString("dom", "dom")).concat(", "))
+                .concat(daneOperatora.getString("kod", "kod").concat(", "))
+                .concat(daneOperatora.getString("miejscowosc", "miejcowosc"));
 
-        String mail = "";
-        mail.concat(daneOperatora.getString("email", null));
+        return danePodstOperatora;
+    }
 
+    public String odczytTelOperatora(Context context) {
+        SharedPreferences daneOperatora = context.getSharedPreferences(plikOperatora, Activity.MODE_PRIVATE);
         String telefon = "";
-        telefon.concat(daneOperatora.getString("telefon", null));
+        telefon = telefon.concat(daneOperatora.getString("telefon", null));
+        return telefon;
+    }
 
+    public String odczytMailOperatora(Context context) {
+        SharedPreferences daneOperatora = context.getSharedPreferences(plikOperatora, Activity.MODE_PRIVATE);
+        String mail = "";
+        mail = mail.concat(daneOperatora.getString("email", null));
+        return mail;
+    }
+
+    public String odczytWojOperatora(Context context) {
+        SharedPreferences daneOperatora = context.getSharedPreferences(plikOperatora, Activity.MODE_PRIVATE);
+        String wojewodztwo = "";
+        wojewodztwo = wojewodztwo.concat(daneOperatora.getString("wojewodztwo", null));
+        return wojewodztwo;
+    }
+
+
+
+    public String czyIstniejeOperator(Context context) {
+        SharedPreferences daneOperatora = context.getSharedPreferences(plikOperatora, Activity.MODE_PRIVATE);
         String czyIstnieje = "false";
-        czyIstnieje = daneOperatora.getString("czyIstnieje", null);
-
+        czyIstnieje = daneOperatora.getString("czyIstnieje", "false");
         return czyIstnieje;
     }
 

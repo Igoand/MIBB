@@ -32,7 +32,8 @@ public class StartMIBB extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (operator.odczytOperatora(getApplicationContext()) == "true") {
+        String statusOperatora = operator.czyIstniejeOperator(getApplication().getApplicationContext());
+        if (statusOperatora == "true") {
             setContentView(R.layout.activity_start_mibb);
         } else {
 
