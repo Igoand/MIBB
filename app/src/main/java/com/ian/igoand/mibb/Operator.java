@@ -6,11 +6,12 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 public class Operator {
+
     // Deklaracja pól obiektu
     String imie;
     String nazwisko;
-    String numerTelefonu;
-    String adresEmail;
+    String telefon;
+    String email;
     String wojewodztwo;
     String powiat;
     String gmina;
@@ -18,7 +19,6 @@ public class Operator {
     String ulica;
     String kodPocztowy;
     String nrDomu;
-    Boolean czyIstnieje;
 
     String plikOperatora = "DaneOperatora";
 
@@ -29,8 +29,8 @@ public class Operator {
         edytujDaneOperatora.clear();
         edytujDaneOperatora.putString("imie", imie);
         edytujDaneOperatora.putString("nazwisko", nazwisko);
-        edytujDaneOperatora.putString("email", adresEmail);
-        edytujDaneOperatora.putString("telefon", numerTelefonu);
+        edytujDaneOperatora.putString("email", email);
+        edytujDaneOperatora.putString("telefon", telefon);
         edytujDaneOperatora.putString("wojewodztwo", wojewodztwo);
         edytujDaneOperatora.putString("powiat", powiat);
         edytujDaneOperatora.putString("gmina", gmina);
@@ -59,6 +59,58 @@ public class Operator {
         return danePodstOperatora;
     }
 
+    public String odczytajDaneOperatora(Context context, String klucz) {
+        String wartosc = "";
+        try {
+            SharedPreferences daneOperatora = context.getSharedPreferences(plikOperatora, Activity.MODE_PRIVATE);
+
+            switch (klucz) {
+                case "imie":
+                    wartosc = daneOperatora.getString(klucz, null);
+                    break;
+                case "nazwisko":
+                    wartosc = daneOperatora.getString(klucz, null);
+                    break;
+                case "email":
+                    wartosc = daneOperatora.getString(klucz, null);
+                    break;
+                case "telefon":
+                    wartosc = daneOperatora.getString(klucz, null);
+                    break;
+                case "wojewodztwo":
+                    wartosc = daneOperatora.getString(klucz, null);
+                    break;
+                case "powiat":
+                    wartosc = daneOperatora.getString(klucz, null);
+                    break;
+                case "gmina":
+                    wartosc = daneOperatora.getString(klucz, null);
+                    break;
+                case "miejscowosc":
+                    wartosc = daneOperatora.getString(klucz, null);
+                    break;
+                case "ulica":
+                    wartosc = daneOperatora.getString(klucz, null);
+                    break;
+                case "kod":
+                    wartosc = daneOperatora.getString(klucz, null);
+                    break;
+                case "dom":
+                    wartosc = daneOperatora.getString(klucz, null);
+                    break;
+                case "czyIstnieje":
+                    wartosc = daneOperatora.getString(klucz, null);
+                    break;
+                default:
+                    wartosc = "Przekazano zły parametr dla odczytu danych operatora";
+            }
+        } catch (Error e) {
+            return "Wystąpił problem z odczytem danych " + e;
+        } finally {
+            return wartosc;
+        }
+    }
+
     public String odczytTelOperatora(Context context) {
         SharedPreferences daneOperatora = context.getSharedPreferences(plikOperatora, Activity.MODE_PRIVATE);
         String telefon = "";
@@ -80,13 +132,33 @@ public class Operator {
         return wojewodztwo;
     }
 
-
-
-    public String czyIstniejeOperator(Context context) {
+    public String odczytPowOperatora(Context context) {
         SharedPreferences daneOperatora = context.getSharedPreferences(plikOperatora, Activity.MODE_PRIVATE);
-        String czyIstnieje = "false";
+        String powiat = "";
+        powiat = powiat.concat(daneOperatora.getString("powiat", null));
+        return powiat;
+    }
+
+    public String odczytGminOperatora(Context context) {
+        SharedPreferences daneOperatora = context.getSharedPreferences(plikOperatora, Activity.MODE_PRIVATE);
+        String gmina = "";
+        gmina = gmina.concat(daneOperatora.getString("gmina", null));
+        return gmina;
+    }
+
+    public String odczytMiejscOperatora(Context context) {
+        SharedPreferences daneOperatora = context.getSharedPreferences(plikOperatora, Activity.MODE_PRIVATE);
+        String miejscowosc = "";
+        miejscowosc = miejscowosc.concat(daneOperatora.getString("miejscowosc", null));
+        return miejscowosc;
+    }
+
+
+    public Boolean czyIstniejeOperator(Context context) {
+        SharedPreferences daneOperatora = context.getSharedPreferences(plikOperatora, Activity.MODE_PRIVATE);
+        String czyIstnieje;
         czyIstnieje = daneOperatora.getString("czyIstnieje", "false");
-        return czyIstnieje;
+        return Boolean.parseBoolean(czyIstnieje);
     }
 
     public String getImie() {
@@ -106,19 +178,19 @@ public class Operator {
     }
 
     public String getNumerTelefonu() {
-        return numerTelefonu;
+        return telefon;
     }
 
     public void setNumerTelefonu(String numerTelefonu) {
-        this.numerTelefonu = numerTelefonu;
+        this.telefon = numerTelefonu;
     }
 
     public String getAdresEmail() {
-        return adresEmail;
+        return email;
     }
 
     public void setAdresEmail(String adresEmail) {
-        this.adresEmail = adresEmail;
+        this.email = adresEmail;
     }
 
     public String getWojewodztwo() {

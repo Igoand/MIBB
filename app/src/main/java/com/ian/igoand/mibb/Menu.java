@@ -27,12 +27,14 @@ public class Menu extends AppCompatActivity {
         menuWprowadzObserwacje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                startActivity(new Intent(Menu.this, WprowadzObserwacje.class));
-
+                startActivity(new Intent(Menu.this, KartaObserwacji.class));
             }
         });
-
-
+        menuZmienDaneOperatora.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Menu.this, EdytujOperatora.class));
+            }
+        });
     }
 }

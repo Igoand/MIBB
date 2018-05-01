@@ -23,14 +23,20 @@
     <string name="przegladHistorii">Przeglądaj złożone obserwacja</string>
     <string name="wyslijFormularz">Wyślij kartę obserwacji</string>
 
-    <!--Napisy na dropsach | Ekran rejestracji obserwacji-->
+    <!--Napisy na dropsach | Ekran rejestracji karty-->
     <string name="lblDaneOperatora">Imię, nazwisko i adres zamieszkania obserwatora</string>
     <string name="lblMail">e-mail</string>
     <string name="lblNrTel">telefon</string>
     <string name="lblData">Data obserwacji</string>
+
+
     <string name="lblNumerKarty">Numer karty</string>
     <string name="btnAnuluj">Anuluj</string>
     <string name="btnDalej">Dalej</string>
 
+    <!--Napisy na dropsach | Ekran dodania obserwacji-->
+    <string name="lblNazwaGniazda">Nazwa gniazda</string>
+    <string name="lblLokalizacja">Lokalizacja gniazda (miejscowość, ulica i nr domu oraz współrzędne GPS*)</string>
+    <string name="btnPobierzLokalizacje">Odczytaj GPS</string>
 
 </resources>
