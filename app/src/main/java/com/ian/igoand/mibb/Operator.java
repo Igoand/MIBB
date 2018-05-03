@@ -20,6 +20,7 @@ public class Operator {
     String kodPocztowy;
     String nrDomu;
 
+    // Nazwa pliku SharedPreferences
     String plikOperatora = "DaneOperatora";
 
     public void zapiszOperatora(Context context) {
@@ -44,19 +45,6 @@ public class Operator {
         edytujDaneOperatora.commit();
 
         Log.i("succes", "Udało się zapisać dane");
-    }
-
-    public String odczytPodstOperatora(Context context) {
-        SharedPreferences daneOperatora = context.getSharedPreferences(plikOperatora, Activity.MODE_PRIVATE);
-        String danePodstOperatora = "";
-        danePodstOperatora = danePodstOperatora.concat(daneOperatora.getString("imie", "imie").concat(" ")
-                .concat(daneOperatora.getString("nazwisko", "nazwisko")).concat(", ")
-                .concat(daneOperatora.getString("ulica", "ulica")).concat(" ")
-                .concat(daneOperatora.getString("dom", "dom")).concat(", "))
-                .concat(daneOperatora.getString("kod", "kod").concat(", "))
-                .concat(daneOperatora.getString("miejscowosc", "miejcowosc"));
-
-        return danePodstOperatora;
     }
 
     public String odczytajDaneOperatora(Context context, String klucz) {
@@ -110,144 +98,4 @@ public class Operator {
             return wartosc;
         }
     }
-
-    public String odczytTelOperatora(Context context) {
-        SharedPreferences daneOperatora = context.getSharedPreferences(plikOperatora, Activity.MODE_PRIVATE);
-        String telefon = "";
-        telefon = telefon.concat(daneOperatora.getString("telefon", null));
-        return telefon;
-    }
-
-    public String odczytMailOperatora(Context context) {
-        SharedPreferences daneOperatora = context.getSharedPreferences(plikOperatora, Activity.MODE_PRIVATE);
-        String mail = "";
-        mail = mail.concat(daneOperatora.getString("email", null));
-        return mail;
-    }
-
-    public String odczytWojOperatora(Context context) {
-        SharedPreferences daneOperatora = context.getSharedPreferences(plikOperatora, Activity.MODE_PRIVATE);
-        String wojewodztwo = "";
-        wojewodztwo = wojewodztwo.concat(daneOperatora.getString("wojewodztwo", null));
-        return wojewodztwo;
-    }
-
-    public String odczytPowOperatora(Context context) {
-        SharedPreferences daneOperatora = context.getSharedPreferences(plikOperatora, Activity.MODE_PRIVATE);
-        String powiat = "";
-        powiat = powiat.concat(daneOperatora.getString("powiat", null));
-        return powiat;
-    }
-
-    public String odczytGminOperatora(Context context) {
-        SharedPreferences daneOperatora = context.getSharedPreferences(plikOperatora, Activity.MODE_PRIVATE);
-        String gmina = "";
-        gmina = gmina.concat(daneOperatora.getString("gmina", null));
-        return gmina;
-    }
-
-    public String odczytMiejscOperatora(Context context) {
-        SharedPreferences daneOperatora = context.getSharedPreferences(plikOperatora, Activity.MODE_PRIVATE);
-        String miejscowosc = "";
-        miejscowosc = miejscowosc.concat(daneOperatora.getString("miejscowosc", null));
-        return miejscowosc;
-    }
-
-
-    public Boolean czyIstniejeOperator(Context context) {
-        SharedPreferences daneOperatora = context.getSharedPreferences(plikOperatora, Activity.MODE_PRIVATE);
-        String czyIstnieje;
-        czyIstnieje = daneOperatora.getString("czyIstnieje", "false");
-        return Boolean.parseBoolean(czyIstnieje);
-    }
-
-    public String getImie() {
-        return imie;
-    }
-
-    public void setImie(String imie) {
-        this.imie = imie;
-    }
-
-    public String getNazwisko() {
-        return nazwisko;
-    }
-
-    public void setNazwisko(String nazwisko) {
-        this.nazwisko = nazwisko;
-    }
-
-    public String getNumerTelefonu() {
-        return telefon;
-    }
-
-    public void setNumerTelefonu(String numerTelefonu) {
-        this.telefon = numerTelefonu;
-    }
-
-    public String getAdresEmail() {
-        return email;
-    }
-
-    public void setAdresEmail(String adresEmail) {
-        this.email = adresEmail;
-    }
-
-    public String getWojewodztwo() {
-        return wojewodztwo;
-    }
-
-    public void setWojewodztwo(String wojewodztwo) {
-        this.wojewodztwo = wojewodztwo;
-    }
-
-    public String getPowiat() {
-        return powiat;
-    }
-
-    public void setPowiat(String powiat) {
-        this.powiat = powiat;
-    }
-
-    public String getGmina() {
-        return gmina;
-    }
-
-    public void setGmina(String gmina) {
-        this.gmina = gmina;
-    }
-
-    public String getMiejscowosc() {
-        return miejscowosc;
-    }
-
-    public void setMiejscowosc(String miejscowosc) {
-        this.miejscowosc = miejscowosc;
-    }
-
-    public String getUlica() {
-        return ulica;
-    }
-
-    public void setUlica(String ulica) {
-        this.ulica = ulica;
-    }
-
-    public String getKodPocztowy() {
-        return kodPocztowy;
-    }
-
-    public void setKodPocztowy(String kodPocztowy) {
-        this.kodPocztowy = kodPocztowy;
-    }
-
-    public String getNrDomu() {
-        return nrDomu;
-    }
-
-    public void setNrDomu(String nrDomu) {
-        this.nrDomu = nrDomu;
-    }
-
-
 }

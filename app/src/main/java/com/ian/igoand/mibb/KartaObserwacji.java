@@ -1,5 +1,6 @@
 package com.ian.igoand.mibb;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,7 +13,6 @@ import android.widget.TextView;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -37,12 +37,13 @@ public class KartaObserwacji extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rejestracja_karty_obserwacji);
-        numerKarty=0;
+        numerKarty = 0;
 
 //        Pobranie daty systemowej oraz konwersja do odpowiedniego formatu
         Date data = Calendar.getInstance().getTime();
         SimpleDateFormat formatDaty = new SimpleDateFormat("dd-MM-yyyy");
         String sformatowanaData = formatDaty.format(data);
+        Context context = getApplicationContext();
 
 
 //        Inicjalizacja pól do wyświetlenia
@@ -58,12 +59,17 @@ public class KartaObserwacji extends AppCompatActivity {
 
 
 //        Wyświeltenie zapisanych danych operatora na polach ekranu
-        viewDaneOperatora.setText(operator.odczytPodstOperatora((getApplication())));
-        viewTelOperatora.setText(operator.odczytTelOperatora((getApplication())));
-        viewMailOperatora.setText(operator.odczytMailOperatora((getApplication())));
-        edtWojewodztwo.setText(operator.odczytWojOperatora((getApplication())));
-        edtPowiat.setText(operator.odczytPowOperatora(getApplicationContext()));
-        edtGmina.setText(operator.odczytGminOperatora(getApplicationContext()));
+        viewDaneOperatora.setText(operator.odczytajDaneOperatora(context, "imie")
+                .concat(operator.odczytajDaneOperatora(context, "nazwisko"))
+                .concat(operator.odczytajDaneOperatora(context, "ulica"))
+                .concat(operator.odczytajDaneOperatora(context, "dom"))
+                .concat(operator.odczytajDaneOperatora(context, "kod"))
+                .concat(operator.odczytajDaneOperatora(context, "miejscowosc")));
+        viewTelOperatora.setText(operator.odczytajDaneOperatora(context, "telefon"));
+        viewMailOperatora.setText(operator.odczytajDaneOperatora(context, "email"));
+        edtWojewodztwo.setText(operator.odczytajDaneOperatora(context, "wojewodztwo"));
+        edtPowiat.setText(operator.odczytajDaneOperatora(context, "powiat"));
+        edtGmina.setText(operator.odczytajDaneOperatora(context, "gmina"));
         inpData.setText(sformatowanaData);
 
 
@@ -92,7 +98,7 @@ public class KartaObserwacji extends AppCompatActivity {
                 startActivity(new Intent(KartaObserwacji.this, Menu.class));
             }
         });
-        btnDodajObserwacje.setOnClickListener(new View.OnClickListener(){
+        btnDodajObserwacje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(KartaObserwacji.this, Obserwacja.class));
@@ -101,12 +107,13 @@ public class KartaObserwacji extends AppCompatActivity {
         });
     }
 
-    public String dajNazweGniazda(String miejscowosc){
-        String nazwaGniazda="";
+    public String dajNazweGniazda(String miejscowosc) {
+        String nazwaGniazda = "";
         nazwaGniazda = nazwaGniazda.concat(miejscowosc + numerGniazda);
         return nazwaGniazda;
     }
-    public void zwiekszNumerGniazda(){
+
+    public void zwiekszNumerGniazda() {
         numerGniazda++;
     }
 }

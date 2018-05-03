@@ -37,7 +37,7 @@ public class StartMIBB extends AppCompatActivity {
 
 
         Boolean statusOperatora;
-        statusOperatora = operator.czyIstniejeOperator(getApplicationContext());
+        statusOperatora = Boolean.parseBoolean(operator.odczytajDaneOperatora(getApplicationContext(), "czyIstnieje"));
 
         if (statusOperatora == false) {
             Log.w("Error", "Nie ma operatora - czyIstnieje: " + statusOperatora);

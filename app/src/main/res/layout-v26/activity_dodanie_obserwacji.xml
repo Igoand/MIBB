@@ -46,8 +46,8 @@
                 android:id="@+id/lblLokalizacja"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:text="@string/lblLokalizacja"
+                android:layout_marginTop="16dp"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="169dp" />
 
@@ -59,7 +59,6 @@
                     android:id="@+id/inputLokalizacjaMiejscowosc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/miejscowosc"
                     android:ems="10"
                     android:inputType="textPersonName"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -87,74 +86,13 @@
                 tools:layout_editor_absoluteX="147dp"
                 tools:layout_editor_absoluteY="70dp" />
 
-            <android.support.constraint.ConstraintLayout
+            <Spinner
+                android:id="@+id/spinner"
+                android:autofillHints="Usytuowanie"
                 android:layout_width="match_parent"
-                android:layout_height="279dp">
-
-                <TextView
-                    android:id="@+id/lblUsytuowanie"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="@string/usytowanie"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <Spinner
-                    android:id="@+id/spinnerUsytuowanie"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"
-                    android:spinnerMode="dialog"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/lblUsytuowanie"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <Spinner
-                    android:id="@+id/spinnerUsytuowanie2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/lblUsytuowanie" />
-
-                <Spinner
-                    android:id="@+id/spinnerUsytuowanie3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/spinnerUsytuowanie2" />
-
-                <Spinner
-                    android:id="@+id/spinnerUsytuowanie4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/spinnerUsytuowanie3" />
-
-                <EditText
-                    android:id="@+id/edtNazwaDrzewa"
-                    android:visibility="invisible"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:hint="@string/wprowadz_nazw_drzewa"
-                    android:singleLine="true"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/spinnerUsytuowanie4"
-                    android:inputType="text" />
-
-            </android.support.constraint.ConstraintLayout>
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteX="12dp"
+                tools:layout_editor_absoluteY="264dp" />
 
         </LinearLayout>
     </ScrollView>

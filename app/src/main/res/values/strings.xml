@@ -38,5 +38,99 @@
     <string name="lblNazwaGniazda">Nazwa gniazda</string>
     <string name="lblLokalizacja">Lokalizacja gniazda (miejscowość, ulica i nr domu oraz współrzędne GPS*)</string>
     <string name="btnPobierzLokalizacje">Odczytaj GPS</string>
+    <string name="service_not_available">Serwis lokalizacji jest niedostępny</string>
+    <string name="invalid_lat_long_used">Błędne wartości lokalizacyjne(szerokość, wysokość)</string>
+    <string name="no_address_found">Nie znaleziono adresu</string>
+    <string name="address_found">Znaleziono adres</string>
+    <string name="no_geocoder_availible">Geocoder jest niedostępny</string>
+
+
+    <string name="permission_rationale">Location permission is needed for core functionality</string>
+    <string name="permission_denied_explanation">Permission was denied, but is needed for core
+        functionality.</string>
+    <string name="settings">Settings</string>
+    <string name="usytowanie">Usytowanie</string>
+    <string name="wprowadz_nazw_drzewa">Wprowadz nazwę drzewa</string>
+
+    <string-array name="usytuowanieI">
+        <item>słup</item>
+        <item>drzewo</item>
+        <item>dach</item>
+        <item>komin</item>
+    </string-array>
+
+    <string-array name="uSlupTyp">
+        <item>ST energetyczny</item>
+        <item>ST telefoniczny</item>
+        <item>SW wolnostojący</item>
+    </string-array>
+
+    <string-array name="uSlupMaterial">
+        <item>B betonowy</item>
+        <item>D drewniany</item>
+    </string-array>
+
+    <string-array name="uSlupKsztalt">
+        <item>I pojedynczy</item>
+        <item>II podwójny</item>
+        <item>A z dwóch elementów w kształcie litery A</item>
+        <item>O o okrągłym przekroju</item>
+    </string-array>
+
+    <string-array name="uTypDrzewa">
+        <item>żywe</item>
+        <item>martwe</item>
+    </string-array>
+
+    <string-array name="uTypKomina">
+        <item>K1 komin o wysokości do 2 m</item>
+        <item>K2 komin o wysokości powyżej 2 m</item>
+    </string-array>
+
+    <string-array name="uTypBudynku">
+        <item>BM mieszkalny</item>
+        <item>BO obora</item>
+        <item>BS stodoła</item>
+        <item>BG nieokreślony</item>
+        <item>BP przemyslowy</item>
+        <item>SPOŻ straży pożarnej</item>
+        <item>SZ szkolny</item>
+        <item>SKLEP sklep</item>
+        <item>Inny</item>
+    </string-array>
+
+    <string-array name="uGatunekDrzewa">
+        <item>dąb</item>>
+        <item>buk</item>
+        <item>brzoza</item>
+        <item>czeremcha</item>
+        <item>jabłoń</item>
+        <item>jarząb</item>
+        <item>jesion</item>
+        <item>olsza</item>
+        <item>głóg</item>
+        <item>grab</item>
+        <item>topola</item>
+        <item>klon</item>
+        <item>lipa</item>
+        <item>wierzba</item>
+        <item>wiąz</item>
+        <item>wiśnia</item>
+        <item>sosna</item>
+        <item>świerk</item>
+        <item>jodła</item>
+        <item>modrzew</item>
+        <item>cis</item>
+        <item>Inne</item>
+    </string-array>
+
+    <string-array name="uTypDachu">
+        <item>D dachówka</item>
+        <item>B blacha (w tym blachodachówka)</item>
+        <item>E eternit</item>
+        <item>P papa i pokrycia bitumiczne</item>
+        <item>DR pokrycie drewniane</item>
+        <item>S strzecha</item>
+    </string-array>
 
 </resources>
