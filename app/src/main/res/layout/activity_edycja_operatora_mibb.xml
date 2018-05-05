@@ -2,9 +2,9 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/mibbTheme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    style="@style/mibbTheme"
 
     tools:context="com.ian.igoand.mibb.StartMIBB">
 
@@ -45,6 +45,7 @@
                 android:ems="10"
                 android:hint="@string/imie"
                 android:inputType="textPersonName"
+                android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textRejestracja" />
@@ -59,6 +60,7 @@
                 android:ems="10"
                 android:hint="@string/nazwisko"
                 android:inputType="textPersonName"
+                android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/inputImie" />
@@ -73,6 +75,7 @@
                 android:ems="10"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
+                android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/inputNazwisko" />
@@ -88,6 +91,7 @@
                 android:ems="10"
                 android:hint="@string/numerTelefonu"
                 android:inputType="phone"
+                android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/inputEmail" />
@@ -100,6 +104,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:hint="@string/wojewodztwo"
+                android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/inputTelefon" />
@@ -112,6 +117,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:hint="@string/powiat"
+                android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/inputWojewodztwo" />
@@ -124,6 +130,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:hint="@string/gmina"
+                android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/inputPowiat" />
@@ -137,6 +144,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:hint="@string/miejscowosc"
+                android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/inputGmina" />
@@ -152,6 +160,7 @@
                 android:ems="10"
                 android:hint="@string/ulica"
                 android:inputType="text"
+                android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/inputMiejscowosc" />
@@ -167,6 +176,7 @@
                 android:ems="10"
                 android:hint="@string/kodPocztowy"
                 android:inputType="textPostalAddress"
+                android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -182,6 +192,7 @@
                 android:ems="10"
                 android:hint="@string/nrDomu"
                 android:inputType="text"
+                android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"

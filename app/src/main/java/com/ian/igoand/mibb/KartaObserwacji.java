@@ -59,11 +59,11 @@ public class KartaObserwacji extends AppCompatActivity {
 
 
 //        Wyświeltenie zapisanych danych operatora na polach ekranu
-        viewDaneOperatora.setText(operator.odczytajDaneOperatora(context, "imie")
-                .concat(operator.odczytajDaneOperatora(context, "nazwisko"))
-                .concat(operator.odczytajDaneOperatora(context, "ulica"))
-                .concat(operator.odczytajDaneOperatora(context, "dom"))
-                .concat(operator.odczytajDaneOperatora(context, "kod"))
+        viewDaneOperatora.setText(operator.odczytajDaneOperatora(context, "imie").concat(" ")
+                .concat(operator.odczytajDaneOperatora(context, "nazwisko")).concat(",   ")
+                .concat(operator.odczytajDaneOperatora(context, "ulica")).concat(" ")
+                .concat(operator.odczytajDaneOperatora(context, "dom")).concat(" ")
+                .concat(operator.odczytajDaneOperatora(context, "kod")).concat(" ")
                 .concat(operator.odczytajDaneOperatora(context, "miejscowosc")));
         viewTelOperatora.setText(operator.odczytajDaneOperatora(context, "telefon"));
         viewMailOperatora.setText(operator.odczytajDaneOperatora(context, "email"));

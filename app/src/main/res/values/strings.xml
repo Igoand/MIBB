@@ -51,6 +51,8 @@
     <string name="settings">Settings</string>
     <string name="usytowanie">Usytowanie</string>
     <string name="wprowadz_nazw_drzewa">Wprowadz nazwę drzewa</string>
+    <string name="platforma">Platforma</string>
+    <string name="efekt_l_gu">Efekt lęgu</string>
 
     <string-array name="usytuowanieI">
         <item>słup</item>
@@ -60,21 +62,21 @@
     </string-array>
 
     <string-array name="uSlupTyp">
-        <item>ST energetyczny</item>
-        <item>ST telefoniczny</item>
-        <item>SW wolnostojący</item>
+        <item>ST - energetyczny</item>
+        <item>ST - telefoniczny</item>
+        <item>SW - wolnostojący</item>
     </string-array>
 
     <string-array name="uSlupMaterial">
-        <item>B betonowy</item>
-        <item>D drewniany</item>
+        <item>B - betonowy</item>
+        <item>D - drewniany</item>
     </string-array>
 
     <string-array name="uSlupKsztalt">
-        <item>I pojedynczy</item>
-        <item>II podwójny</item>
-        <item>A z dwóch elementów w kształcie litery A</item>
-        <item>O o okrągłym przekroju</item>
+        <item>I - pojedynczy</item>
+        <item>II - podwójny</item>
+        <item>A - dwa elementy w kształcie litery A</item>
+        <item>O - okrągły przekrój</item>
     </string-array>
 
     <string-array name="uTypDrzewa">
@@ -83,19 +85,19 @@
     </string-array>
 
     <string-array name="uTypKomina">
-        <item>K1 komin o wysokości do 2 m</item>
-        <item>K2 komin o wysokości powyżej 2 m</item>
+        <item>K1 - komin o wysokości do 2 m</item>
+        <item>K2 - komin o wysokości powyżej 2 m</item>
     </string-array>
 
     <string-array name="uTypBudynku">
-        <item>BM mieszkalny</item>
-        <item>BO obora</item>
-        <item>BS stodoła</item>
-        <item>BG nieokreślony</item>
-        <item>BP przemyslowy</item>
-        <item>SPOŻ straży pożarnej</item>
-        <item>SZ szkolny</item>
-        <item>SKLEP sklep</item>
+        <item>BM - mieszkalny</item>
+        <item>BO - obora</item>
+        <item>BS - stodoła</item>
+        <item>BG - nieokreślony</item>
+        <item>BP - przemyslowy</item>
+        <item>SPOŻ - straży pożarnej</item>
+        <item>SZ - szkolny</item>
+        <item>SKLEP - sklep</item>
         <item>Inny</item>
     </string-array>
 
@@ -125,12 +127,37 @@
     </string-array>
 
     <string-array name="uTypDachu">
-        <item>D dachówka</item>
-        <item>B blacha (w tym blachodachówka)</item>
-        <item>E eternit</item>
-        <item>P papa i pokrycia bitumiczne</item>
-        <item>DR pokrycie drewniane</item>
-        <item>S strzecha</item>
+        <item>D - dachówka</item>
+        <item>B - blacha (w tym blachodachówka)</item>
+        <item>E - eternit</item>
+        <item>P - papa i pokrycia bitumiczne</item>
+        <item>DR - pokrycie drewniane</item>
+        <item>S - strzecha</item>
     </string-array>
+
+    <string-array name="platforma">
+        <item>PM – platforma metalowa</item>
+        <item>PD – platforma drewniana</item>
+        <item>PN – platforma nieokreślona</item>
+        <item>brak - gniazdo nie jest posadowione na platformiea</item>
+    </string-array>
+
+    <string-array name="efektLegu">
+        <item>HF - Pusta platforma – potencjalne miejsce gniazdowania w przyszłości, nie mylić z kategorią HO)</item>
+        <item>HX - gniazdo istnieje, lecz nie wiadomo czy w ogóle było zajęte</item>
+        <item>HO - gniazdo na pewno nie było zajęte (nie mylić z kategorią HF)</item>
+        <item>HB1 – gniazdo odwiedzane przez jednego bociana przez 1–4 tygodnie lub nieregularnie przez cały sezon</item>
+        <item>HB2 – gniazdo odwiedzane przez dwa bociany przez 1–4 tygodnie lub nieregularnie przez cały sezon</item>
+        <item>HBX – gniazdo odwiedzane przez nieznaną liczbę ptaków przez 1–4 tygodnie lub nieregularnie przez cały sezon</item>
+        <item>HE - gniazdo zajęte przez jednego bociana nie dłużej niż 4 tygodnie</item>
+        <item>HPx - gniazdo zajęte przez parę, ale nie można zdobyć pewnych informacji o efekcie lęgu</item>
+        <item>HPo(x) - gniazdo zajęte przez parę ponad miesiąc bez sukcesu lęgowego, ale nie można ustalić czy były złożone jaja, lub czy wykluły się młode)</item>
+        <item>HPo(o) - gniazdo zajęte przez parę ponad miesiąc, ale nie zostały złożone jaja)</item>
+        <item>HPo(g) - w gnieździe były jaja, lecz z żadnego nie wykluły się młode (np. gniazdo z jajami spadło)</item>
+        <item>HPo(m) - gniazdo zajęte przez parę z młodymi, ale wszystkie pisklęta zginęły (np. z po gradobiciu)</item>
+        <item>HPmx - stwierdzono obecność młodych zdolnych do wylotu, ale nie można ustalić ich liczby</item>
+        <item>(HPm1 -6) - stwierdzono obecność młodych zdolnych do wylotu HPm oraz liczbę młodych</item>
+    </string-array>
+    <string name="title_activity_obsluga_mapy">Map</string>
 
 </resources>

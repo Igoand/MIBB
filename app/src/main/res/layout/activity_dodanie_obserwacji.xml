@@ -57,10 +57,10 @@
 
                 <AutoCompleteTextView
                     android:id="@+id/inputLokalizacjaMiejscowosc"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="@string/miejscowosc"
                     android:ems="10"
+                    android:hint="@string/miejscowosc"
                     android:inputType="textPersonName"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/btnPobierzLokalizacje"
@@ -74,9 +74,20 @@
                     android:text="@string/btnPobierzLokalizacje"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btnPokazNaMapie"
                     app:layout_constraintStart_toEndOf="@+id/inputLokalizacjaMiejscowosc"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.555" />
+
+                <ImageButton
+                    android:id="@+id/btnPokazNaMapie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/btnPobierzLokalizacje"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:drawable/ic_dialog_map" />
 
             </android.support.constraint.ConstraintLayout>
 
@@ -89,15 +100,14 @@
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="279dp">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/lblUsytuowanie"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="126dp"
+                    android:layout_height="25dp"
                     android:layout_marginTop="16dp"
                     android:ems="10"
-                    android:inputType="textPersonName"
                     android:text="@string/usytowanie"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -143,16 +153,56 @@
 
                 <EditText
                     android:id="@+id/edtNazwaDrzewa"
-                    android:visibility="invisible"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:hint="@string/wprowadz_nazw_drzewa"
+                    android:inputType="text"
                     android:singleLine="true"
+                    android:visibility="invisible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/spinnerUsytuowanie4"
-                    android:inputType="text" />
+                    app:layout_constraintTop_toBottomOf="@+id/spinnerUsytuowanie4" />
+
+                <TextView
+                    android:id="@+id/lblPlatforma"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/platforma"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edtNazwaDrzewa" />
+
+                <Spinner
+                    android:id="@+id/spinnerPlatforma"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lblPlatforma" />
+
+                <TextView
+                    android:id="@+id/lblEfektLegu"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/efekt_l_gu"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/spinnerPlatforma" />
+
+                <Spinner
+                    android:id="@+id/spinnerEfektLegu"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lblEfektLegu" />
 
             </android.support.constraint.ConstraintLayout>
 

@@ -1,5 +1,6 @@
 package com.ian.igoand.mibb;
 
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -14,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -38,6 +40,7 @@ public class Obserwacja extends AppCompatActivity {
     AutoCompleteTextView inputMiejscowosc;
     TextView lblOdczytanaLokalizacja;
     Button btnOdczytajLokalizacjeGPS;
+    ImageButton btnPokazNaMapie;
     Spinner spinnerUsytuowanie;
     String adres;
     double lokalizacjaX;
@@ -46,6 +49,8 @@ public class Obserwacja extends AppCompatActivity {
     Spinner spinnerUsytuowanie3;
     Spinner spinnerUsytuowanie4;
     EditText edtNazwaDrzewa;
+    Spinner spinnerPlatforma;
+    Spinner spinnerEfektLegu;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,13 +62,15 @@ public class Obserwacja extends AppCompatActivity {
         lblNazwaGniazda = findViewById(R.id.lblNazwaGniazda);
         inputMiejscowosc = findViewById(R.id.inputLokalizacjaMiejscowosc);
         btnOdczytajLokalizacjeGPS = findViewById(R.id.btnPobierzLokalizacje);
+        btnPokazNaMapie = findViewById(R.id.btnPokazNaMapie);
         lblOdczytanaLokalizacja = findViewById(R.id.lblLokGPS);
         spinnerUsytuowanie = findViewById(R.id.spinnerUsytuowanie);
         spinnerUsytuowanie2 = findViewById(R.id.spinnerUsytuowanie2);
         spinnerUsytuowanie3 = findViewById(R.id.spinnerUsytuowanie3);
         spinnerUsytuowanie4 = findViewById(R.id.spinnerUsytuowanie4);
         edtNazwaDrzewa = findViewById(R.id.edtNazwaDrzewa);
-
+        spinnerPlatforma = findViewById(R.id.spinnerPlatforma);
+        spinnerEfektLegu = findViewById(R.id.spinnerEfektLegu);
 
         btnOdczytajLokalizacjeGPS.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +94,17 @@ public class Obserwacja extends AppCompatActivity {
                     }
                 });
                 lblOdczytanaLokalizacja.setText(adres + "\nSzerokość: " + lokalizacjaX + ", wysokość: " + lokalizacjaY);
+            }
+        });
+
+        btnPokazNaMapie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Obserwacja.this, ObslugaMapy.class);
+                intent.putExtra("x", lokalizacjaX);
+                intent.putExtra("y", lokalizacjaY);
+                intent.putExtra("pointer", miejscowosc);
+                startActivity(intent);
             }
         });
 
@@ -155,6 +173,10 @@ public class Obserwacja extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
+
+        spinnerPlatforma.setAdapter(przygotujAdapter(R.array.platforma));
+
+        spinnerEfektLegu.setAdapter(przygotujAdapter(R.array.efektLegu));
     }
 
     public ArrayAdapter<CharSequence> przygotujAdapter(int typDancyh) {
@@ -202,19 +224,31 @@ public class Obserwacja extends AppCompatActivity {
         return adres.get(0);
     }
 
-    public void setMiejscowosc(String miejscowosc) {
-        this.miejscowosc = miejscowosc;
-    }
-
     public void setAdres(String adres) {
         this.adres = adres;
+    }
+
+    public double getLokalizacjaX() {
+        return this.lokalizacjaX;
+    }
+
+    public void setLokalizacjaX(double lokalizacjaX) {
+        this.lokalizacjaX = lokalizacjaX;
+    }
+
+    public double getLokalizacjaY() {
+        return this.lokalizacjaY;
     }
 
     public void setLokalizacjaY(double lokalizacjaY) {
         this.lokalizacjaY = lokalizacjaY;
     }
 
-    public void setLokalizacjaX(double lokalizacjaX) {
-        this.lokalizacjaX = lokalizacjaX;
+    public String getMiejscowosc() {
+        return this.miejscowosc;
+    }
+
+    public void setMiejscowosc(String miejscowosc) {
+        this.miejscowosc = miejscowosc;
     }
 }
