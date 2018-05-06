@@ -5,13 +5,15 @@
     style="@style/mibbTheme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:layout_editor_absoluteY="81dp">
+    tools:layout_editor_absoluteY="81dp"
+
+    >
 
     <ScrollView
         android:id="@+id/scrollView3"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="4dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -30,6 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/lblNazwaGniazda"
+                android:textSize="@dimen/label"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="16dp" />
 
@@ -37,7 +40,9 @@
                 android:id="@+id/lblNazwaGniazda"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingStart="4dp"
                 android:text="@string/lblNazwaGniazda"
+                android:textColor="@color/tresc"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="34dp"
                 tools:layout_editor_absoluteY="100dp" />
@@ -46,14 +51,17 @@
                 android:id="@+id/lblLokalizacja"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="4dp"
                 android:text="@string/lblLokalizacja"
+                android:textSize="@dimen/label"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="169dp" />
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp">
+
 
                 <AutoCompleteTextView
                     android:id="@+id/inputLokalizacjaMiejscowosc"
@@ -76,12 +84,11 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/btnPokazNaMapie"
                     app:layout_constraintStart_toEndOf="@+id/inputLokalizacjaMiejscowosc"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.555" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageButton
                     android:id="@+id/btnPokazNaMapie"
-                    android:layout_width="wrap_content"
+                    android:layout_width="56dp"
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -95,20 +102,31 @@
                 android:id="@+id/lblLokGPS"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:layout_editor_absoluteX="147dp"
-                tools:layout_editor_absoluteY="70dp" />
+                android:layout_margin="4dp"
+                android:textColor="@color/tresc"
+                android:visibility="gone" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:background="@color/label" />
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="467dp">
+
 
                 <TextView
                     android:id="@+id/lblUsytuowanie"
-                    android:layout_width="126dp"
-                    android:layout_height="25dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
                     android:layout_marginTop="16dp"
                     android:ems="10"
                     android:text="@string/usytowanie"
+                    android:textSize="@dimen/label"
+                    app:layout_constraintEnd_toStartOf="@+id/spinnerUsytuowanie"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -116,9 +134,7 @@
                     android:id="@+id/spinnerUsytuowanie"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
-                    android:spinnerMode="dialog"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/lblUsytuowanie"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -130,13 +146,13 @@
                     android:layout_marginTop="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/lblUsytuowanie" />
+                    app:layout_constraintTop_toBottomOf="@+id/spinnerUsytuowanie" />
 
                 <Spinner
                     android:id="@+id/spinnerUsytuowanie3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/spinnerUsytuowanie2" />
@@ -145,21 +161,21 @@
                     android:id="@+id/spinnerUsytuowanie4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/spinnerUsytuowanie3" />
 
                 <EditText
                     android:id="@+id/edtNazwaDrzewa"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="4dp"
                     android:hint="@string/wprowadz_nazw_drzewa"
                     android:inputType="text"
                     android:singleLine="true"
-                    android:visibility="invisible"
+                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/spinnerUsytuowanie4" />
@@ -170,6 +186,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="@string/platforma"
+                    android:textSize="@dimen/label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/edtNazwaDrzewa" />
@@ -178,7 +195,7 @@
                     android:id="@+id/spinnerPlatforma"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -188,21 +205,102 @@
                     android:id="@+id/lblEfektLegu"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:text="@string/efekt_l_gu"
+                    android:textSize="@dimen/label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/spinnerPlatforma" />
+                    app:layout_constraintTop_toBottomOf="@+id/spinnerPlatforma" />
 
                 <Spinner
                     android:id="@+id/spinnerEfektLegu"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/lblEfektLegu" />
+
+                <!--                <Switch
+                                    android:id="@+id/switchStanGniazda"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    android:layout_marginTop="16dp"
+                                    android:showText="true"
+                                    android:text="@string/stan_gniazda"
+                                    android:textOff="@string/dobry_brak_zagro_e"
+                                    android:textOn="@string/z_y_gniazdo_zagro_one"
+                                    android:textSize="@dimen/label"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="1.0"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/spinnerEfektLegu" />-->
+
+                <Spinner
+                    android:id="@+id/spinnerStanGniazda"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/switchStanGniazda" />
+
+                <Switch
+                    android:id="@+id/switchStanGniazda"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="16dp"
+                    android:checked="true"
+                    android:showText="true"
+                    android:splitTrack="false"
+                    android:text="@string/stan_gniazda"
+                    android:textOff="@string/z_y_gniazdo_zagro_one"
+                    android:textOn="@string/dobry_brak_zagro_e"
+                    android:textSize="@dimen/label"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinnerEfektLegu"
+                    tools:checked="true" />
+
+                <Switch
+                    android:id="@+id/switchObraczka"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="16dp"
+                    android:showText="true"
+                    android:splitTrack="false"
+                    android:text="@string/obecno_obr_czki"
+                    android:textOff="@string/brakObraczki"
+                    android:textOn="@string/jestObraczka"
+                    android:textSize="@dimen/label"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinnerStanGniazda" />
+
+                <ImageView
+                    android:id="@+id/imgZdjecie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/switchObraczka" />
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/btnZrobZdjecie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    android:clickable="true"
+                    app:elevation="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@android:drawable/ic_menu_camera" />
 
             </android.support.constraint.ConstraintLayout>
 
