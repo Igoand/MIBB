@@ -3,4 +3,5 @@
     <dimen name="naglowek">24sp</dimen>
     <dimen name="editText">18sp</dimen>
     <dimen name="button">22sp</dimen>
+    <dimen name="label">20sp</dimen>
 </resources>

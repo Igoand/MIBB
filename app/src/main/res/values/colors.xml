@@ -7,5 +7,6 @@
     <color name="primary_material_light">#5eaf00</color>
     <color name="btnBackground">#bf360c</color>
     <color name="label">#263238</color>
+    <color name="tresc">#000000</color>
 
 </resources>

@@ -4,6 +4,12 @@
     package="com.ian.igoand.mibb">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-feature
+        android:name="android.hardware.camera2"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -30,14 +36,17 @@
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".KartaObserwacji"
+            android:label="Dodaj kartę obserwacji"
             android:theme="@style/mibbTheme"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".Obserwacja"
+            android:label="Informacje na temat gniazda"
             android:theme="@style/mibbTheme"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".EdytujOperatora"
+            android:label="Edycja danych operatora"
             android:theme="@style/mibbTheme"
             android:windowSoftInputMode="stateHidden" />
 

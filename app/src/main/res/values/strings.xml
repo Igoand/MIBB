@@ -52,7 +52,7 @@
     <string name="usytowanie">Usytowanie</string>
     <string name="wprowadz_nazw_drzewa">Wprowadz nazwę drzewa</string>
     <string name="platforma">Platforma</string>
-    <string name="efekt_l_gu">Efekt lęgu</string>
+    <string name="stanGniazda">Stan gniazda</string>
 
     <string-array name="usytuowanieI">
         <item>słup</item>
@@ -80,8 +80,8 @@
     </string-array>
 
     <string-array name="uTypDrzewa">
-        <item>żywe</item>
-        <item>martwe</item>
+        <item>żywe </item>
+        <item>martwe </item>
     </string-array>
 
     <string-array name="uTypKomina">
@@ -158,6 +158,41 @@
         <item>HPmx - stwierdzono obecność młodych zdolnych do wylotu, ale nie można ustalić ich liczby</item>
         <item>(HPm1 -6) - stwierdzono obecność młodych zdolnych do wylotu HPm oraz liczbę młodych</item>
     </string-array>
-    <string name="title_activity_obsluga_mapy">Map</string>
 
+
+    <string-array name="stanGniazda">
+        <item>budynek lub inna konstrukcja z gniazdem (np. komin) przeznaczone są do rozbiórki, grożą zawaleniem</item>
+        <item>gniazdo na słupie energetycznym bez platformy</item>
+        <item>przechylony słup z gniazdem</item>
+        <item>gniazdo zagrożone przez planowaną inwestycję (remont dachu, budowa drogi, budowa lotniska, itp.)</item>
+        <item>w pobliżu niebezpieczny transformator, na którym giną ptaki</item>
+        <item>gniazdo konfliktowe (np. posadowione na czynnym kominie;
+        ptaki zanieczyszczają odchodami: blaszany dach, ozdobne ogrodzenie, okna, itp.)
+    </item>
+        <item>gniazdo zbyt dużych rozmiarów – o wysokości powyżej 1 m</item>
+        <item>gniazdo przechylone, zagrożone osunięciem</item>
+        <item>zły stan techniczny platformy (np. spróchniała)</item>
+        <item>niestabilna podstawa gniazda (np. pochylony słup, spróchniałe drzewo, walący się dach
+    </item>
+        <item>drzewo suche</item>
+        <item>gniazdo na drzewie zarośnięte gałęziami utrudniającymi ptakom dolot</item>
+        <item>gniazdo posadowione na suchym konarze</item>
+        <item>inne – zapisz w uwagach</item>
+    </string-array>
+
+
+    <string name="title_activity_obsluga_mapy">Map</string>
+    <string name="efekt_l_gu">Efekt lęgu</string>
+    <string name="stan_gniazda">Stan gniazda</string>
+    <string name="dobry_brak_zagro_e">dobry</string>
+    <string name="z_y_gniazdo_zagro_one">zły</string>
+    <string name="obecno_obr_czki">Obecność obrączki</string>
+    <string name="brakObraczki">brak</string>
+    <string name="jestObraczka">jest</string>
+    <string name="uwagi_do_obserwowanego_gniazda">Uwagi do obserwowanego gniazda</string>
+    <string name="dodaj_obserwacj">Dodaj obserwację</string>
+    <string name="zapisz_obserwacj">Zapisz obserwację</string>
+    <string name="mariaDBhostname">jdbc:mysql:localhost/mibb</string>
+    <string name="mariaDBuser">root</string>
+    <string name="mariaDBpass" />
 </resources>

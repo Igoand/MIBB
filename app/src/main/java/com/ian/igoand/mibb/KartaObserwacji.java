@@ -15,11 +15,18 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class KartaObserwacji extends AppCompatActivity {
 
     Operator operator = new Operator();
     PrzygotujDaneTERYT teryt = new PrzygotujDaneTERYT();
+
+    // Deklaracja pól klasy
+    String daneOperatora, emailOperatora, telefonOperatora, gminaKarty, powiatKarty, wojewodztwoKarty, nrKarty;
+    Date dataKarty;
+    List<Obserwacja> listaObserwacji;
+
 
     TextView viewDaneOperatora;
     TextView viewTelOperatora;
@@ -107,13 +114,7 @@ public class KartaObserwacji extends AppCompatActivity {
         });
     }
 
-    public String dajNazweGniazda(String miejscowosc) {
-        String nazwaGniazda = "";
-        nazwaGniazda = nazwaGniazda.concat(miejscowosc + numerGniazda);
-        return nazwaGniazda;
-    }
-
-    public void zwiekszNumerGniazda() {
-        numerGniazda++;
+    public int dajNumerKarty(){
+        return numerKarty;
     }
 }

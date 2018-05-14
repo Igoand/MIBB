@@ -109,12 +109,12 @@
             <View
                 android:id="@+id/view"
                 android:layout_width="match_parent"
-                android:layout_height="2px"
+                android:layout_height="2dp"
                 android:background="@color/label" />
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="467dp">
+                android:layout_height="wrap_content">
 
 
                 <TextView
@@ -170,12 +170,12 @@
                 <EditText
                     android:id="@+id/edtNazwaDrzewa"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:hint="@string/wprowadz_nazw_drzewa"
                     android:inputType="text"
                     android:singleLine="true"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/spinnerUsytuowanie4" />
@@ -239,7 +239,7 @@
 
                 <Spinner
                     android:id="@+id/spinnerStanGniazda"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:visibility="gone"
@@ -251,7 +251,7 @@
                     android:id="@+id/switchStanGniazda"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginTop="16dp"
                     android:checked="true"
                     android:showText="true"
@@ -269,8 +269,8 @@
                     android:id="@+id/switchObraczka"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="8dp"
                     android:showText="true"
                     android:splitTrack="false"
                     android:text="@string/obecno_obr_czki"
@@ -278,31 +278,82 @@
                     android:textOn="@string/jestObraczka"
                     android:textSize="@dimen/label"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/spinnerStanGniazda" />
 
-                <ImageView
-                    android:id="@+id/imgZdjecie"
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/inputUwagi"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:ems="10"
+                    android:hint="@string/uwagi_do_obserwowanego_gniazda"
+                    android:inputType="textMultiLine"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/switchObraczka" />
+                    app:layout_constraintTop_toBottomOf="@+id/switchObraczka" />
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/inputUwagi">
+
+                    <ImageView
+                        android:id="@+id/imgZdjecie"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintEnd_toStartOf="@+id/imgZdjecie2"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/imgZdjecie2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintEnd_toEndOf="parent" />
+                </android.support.constraint.ConstraintLayout>
 
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/btnZrobZdjecie"
-                    android:layout_width="wrap_content"
+                    android:layout_width="40dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="18dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
                     android:clickable="true"
+                    android:focusable="true"
                     app:elevation="0dp"
+
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/inputUwagi"
                     app:srcCompat="@android:drawable/ic_menu_camera" />
 
             </android.support.constraint.ConstraintLayout>
+
+            <Button
+                android:id="@+id/btnDodajObserwacje"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/dodaj_obserwacj"
+                tools:layout_editor_absoluteX="31dp"
+                tools:layout_editor_absoluteY="387dp" />
+
+            <Button
+                android:id="@+id/btnZapiszObserwacje"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/zapisz_obserwacj" />
 
         </LinearLayout>
     </ScrollView>
