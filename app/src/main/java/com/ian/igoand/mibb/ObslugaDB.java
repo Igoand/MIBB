@@ -13,29 +13,29 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
-import java.net.URLEncoder;
+
+import static java.net.URLEncoder.encode;
 
 public class ObslugaDB extends AsyncTask<String, Void, String> {
     Context context;
     AlertDialog alertDialog;
+    String wynik = "";
 
-    public ObslugaDB(Context ctx) {
+    ObslugaDB(Context ctx) {
         this.context = ctx;
     }
 
     @Override
     protected String doInBackground(String... params) {
-        String adresNGrok = "http://225d2e8c.ngrok.io";
+        String adresNGrok = "https://a7fe4732.ngrok.io";
         String usluga = params[0];
         String dodajOperacje_url = adresNGrok + "/statusDanychObserwacji.php";
         String restInsertObserwacja_url = adresNGrok + "/restInsertObserwacja.php";
         String restSprawdzGniazdo_url = adresNGrok + "/restSprawdzGniazdo.php";
 
         // Decyzja o wyborze usługi PHP
-        if (usluga == "sprawdzNumerGniazda") {
+        if (usluga.equals("sprawdzNumerGniazda")) {
             try {
                 // Ustanowienie połączenia do bazy
                 URL url = new URL(dodajOperacje_url);
@@ -49,7 +49,7 @@ public class ObslugaDB extends AsyncTask<String, Void, String> {
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
 
                 // Parametry przekazane do PHP
-                String post_data = URLEncoder.encode("nazwaTabeli", "UTF-8") + "=" + URLEncoder.encode(usluga, "UTF-8");
+                String post_data = encode("nazwaTabeli", "UTF-8") + "=" + encode(usluga, "UTF-8");
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -58,24 +58,23 @@ public class ObslugaDB extends AsyncTask<String, Void, String> {
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
 
                 // Odczyt danych zwróconych przez PHP
-                String result = "", line;
+                StringBuilder result = new StringBuilder();
+                String line;
 
                 while ((line = bufferedReader.readLine()) != null) {
-                    result += line;
+                    result.append(line);
                 }
 
                 bufferedReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();
 
-                return result;
+                return result.toString();
 
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else if (usluga == "wyslijObserwacje") {
+        } else if (usluga.equals("wyslijObserwacje")) {
             try {
                 URL url = new URL(restInsertObserwacja_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -88,16 +87,16 @@ public class ObslugaDB extends AsyncTask<String, Void, String> {
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
 
                 // Parametry przekazane do PHP
-                String post_data = URLEncoder.encode("nazwaGniazda", "UTF-8") + "=" + URLEncoder.encode((String) params[1], "UTF-8") + "&" +
-                        URLEncoder.encode("lokalizacjaGniazda", "UTF-8") + "=" + URLEncoder.encode((String) params[2], "UTF-8") + "&" +
-                        URLEncoder.encode("usytuowanieGniazda", "UTF-8") + "=" + URLEncoder.encode((String) params[3], "UTF-8") + "&" +
-                        URLEncoder.encode("platformaGniazda", "UTF-8") + "=" + URLEncoder.encode((String) params[4], "UTF-8") + "&" +
-                        URLEncoder.encode("efektLegu", "UTF-8") + "=" + URLEncoder.encode((String) params[5], "UTF-8") + "&" +
-                        URLEncoder.encode("stanGniazda", "UTF-8") + "=" + URLEncoder.encode((String) params[6], "UTF-8") + "&" +
-                        URLEncoder.encode("obecnoscObraczki", "UTF-8") + "=" + URLEncoder.encode((String) params[7], "UTF-8") + "&" +
-                        URLEncoder.encode("uwagi", "UTF-8") + "=" + URLEncoder.encode((String) params[8], "UTF-8") + "&" +
-                        URLEncoder.encode("idZdjecia", "UTF-8") + "=" + URLEncoder.encode((String) params[9], "UTF-8") + "&" +
-                        URLEncoder.encode("fkKartaObserwacji", "UTF-8") + "=" + URLEncoder.encode((String) params[10], "UTF-8");
+                String post_data = encode("nazwaGniazda", "UTF-8") + "=" + encode(params[1], "UTF-8") + "&" +
+                        encode("lokalizacjaGniazda", "UTF-8") + "=" + encode(params[2], "UTF-8") + "&" +
+                        encode("usytuowanieGniazda", "UTF-8") + "=" + encode(params[3], "UTF-8") + "&" +
+                        encode("platformaGniazda", "UTF-8") + "=" + encode(params[4], "UTF-8") + "&" +
+                        encode("efektLegu", "UTF-8") + "=" + encode(params[5], "UTF-8") + "&" +
+                        encode("stanGniazda", "UTF-8") + "=" + encode(params[6], "UTF-8") + "&" +
+                        encode("obecnoscObraczki", "UTF-8") + "=" + encode(params[7], "UTF-8") + "&" +
+                        encode("uwagi", "UTF-8") + "=" + encode(params[8], "UTF-8") + "&" +
+                        encode("idZdjecia", "UTF-8") + "=" + encode(params[9], "UTF-8") + "&" +
+                        encode("fkKartaObserwacji", "UTF-8") + "=" + encode(params[10], "UTF-8");
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -106,28 +105,27 @@ public class ObslugaDB extends AsyncTask<String, Void, String> {
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
 
                 // Odczyt danych zwróconych przez PHP
-                String result = "", line;
+                StringBuilder result = new StringBuilder();
+                String line;
 
                 while ((line = bufferedReader.readLine()) != null) {
-                    result += line;
+                    result.append(line);
                 }
 
                 bufferedReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();
 
-                return result;
+                return result.toString();
 
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        } else if (usluga.equals("sprawdzNrGniazda")) {
+            wynik = przygotujPOST(restSprawdzGniazdo_url, "miejscowosc", params[1]);
+            return wynik;
         }
-        else if (usluga == "sprawdzNrGniazda"){
-            przygotujPOST(restInsertObserwacja_url, "miejscowosc", params[1]);
-        }
-        return null;
+        return wynik;
     }
 
     @Override
@@ -139,7 +137,7 @@ public class ObslugaDB extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         alertDialog.setMessage(result);
-        alertDialog.show();
+        //alertDialog.show();
     }
 
     @Override
@@ -147,8 +145,7 @@ public class ObslugaDB extends AsyncTask<String, Void, String> {
         super.onProgressUpdate(values);
     }
 
-
-    public String przygotujPOST(String urlUslugi, String zmiennaPHP, String... param) {
+    private String przygotujPOST(String urlUslugi, String zmiennaPHP, String... param) {
         String post_data = "";
         try {
             URL url = new URL(urlUslugi);
@@ -163,7 +160,7 @@ public class ObslugaDB extends AsyncTask<String, Void, String> {
 
 
             // Parametry przekazane do PHP
-            post_data = dajURLenoder(zmiennaPHP, param[1]);
+            post_data = dajURLenoder(zmiennaPHP, param[0]);
 
             bufferedWriter.write(post_data);
             bufferedWriter.flush();
@@ -173,32 +170,24 @@ public class ObslugaDB extends AsyncTask<String, Void, String> {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
 
             // Odczyt danych zwróconych przez PHP
-            String result = "", line;
-
+            StringBuilder result = new StringBuilder();
+            String line;
             while ((line = bufferedReader.readLine()) != null) {
-                result += line;
+                result.append(line);
             }
 
             bufferedReader.close();
             inputStream.close();
             httpURLConnection.disconnect();
 
-        } catch (UnsupportedEncodingException e1) {
-            e1.printStackTrace();
-        } catch (ProtocolException e1) {
-            e1.printStackTrace();
-        } catch (MalformedURLException e1) {
-            e1.printStackTrace();
+            return result.toString();
         } catch (IOException e1) {
             e1.printStackTrace();
         }
-        return post_data;
+        return "";
     }
 
-    public String dajURLenoder(String zmiennaPHP, String parametr) throws UnsupportedEncodingException {
-        return URLEncoder.encode(zmiennaPHP, "UTF-8") + "=" + URLEncoder.encode(parametr, "UTF-8");
+    private String dajURLenoder(String zmiennaPHP, String parametr) throws UnsupportedEncodingException {
+        return encode(zmiennaPHP, "UTF-8") + "=" + encode(parametr, "UTF-8");
     }
-
-    ;
-
 }

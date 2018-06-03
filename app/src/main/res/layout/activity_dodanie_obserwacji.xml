@@ -90,6 +90,7 @@
                     android:id="@+id/btnPokazNaMapie"
                     android:layout_width="56dp"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/btnPobierzLokalizacje"
@@ -222,31 +223,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/lblEfektLegu" />
 
-                <!--                <Switch
-                                    android:id="@+id/switchStanGniazda"
-                                    android:layout_width="0dp"
-                                    android:layout_height="0dp"
-                                    android:layout_marginTop="16dp"
-                                    android:showText="true"
-                                    android:text="@string/stan_gniazda"
-                                    android:textOff="@string/dobry_brak_zagro_e"
-                                    android:textOn="@string/z_y_gniazdo_zagro_one"
-                                    android:textSize="@dimen/label"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintHorizontal_bias="1.0"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/spinnerEfektLegu" />-->
-
-                <Spinner
-                    android:id="@+id/spinnerStanGniazda"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/switchStanGniazda" />
-
                 <Switch
                     android:id="@+id/switchStanGniazda"
                     android:layout_width="0dp"
@@ -265,12 +241,23 @@
                     app:layout_constraintTop_toBottomOf="@+id/spinnerEfektLegu"
                     tools:checked="true" />
 
+                <Spinner
+                    android:id="@+id/spinnerStanGniazda"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/switchStanGniazda" />
+
                 <Switch
                     android:id="@+id/switchObraczka"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginTop="8dp"
+                    android:checked="false"
                     android:showText="true"
                     android:splitTrack="false"
                     android:text="@string/obecno_obr_czki"
@@ -282,21 +269,141 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/spinnerStanGniazda" />
 
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/obraczki"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@+id/switchObraczka">
+
+                    <CheckBox
+                        android:id="@+id/cbLskok1"
+                        android:layout_width="84dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/l_skok"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cbLgolen1" />
+
+                    <CheckBox
+                        android:id="@+id/cbPgolen2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/p_gole"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+                    <CheckBox
+                        android:id="@+id/cbLgolen1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/l_gole"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+                    <CheckBox
+                        android:id="@+id/cbPskok2"
+                        android:layout_width="86dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/p_skok"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cbPgolen2" />
+
+                    <CheckBox
+                        android:id="@+id/cbLskok2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/l_skok"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/cbPskok2"
+                        app:layout_constraintTop_toBottomOf="@+id/cbLgolen2" />
+
+                    <CheckBox
+                        android:id="@+id/cbLgolen2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/l_gole"
+                        app:layout_constraintEnd_toStartOf="@+id/cbPgolen2"
+                        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+                    <CheckBox
+                        android:id="@+id/cbPskok1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/p_skok"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/cbLskok2"
+                        app:layout_constraintStart_toEndOf="@+id/cbLgolen1"
+                        app:layout_constraintTop_toBottomOf="@+id/cbPgolen1" />
+
+                    <CheckBox
+                        android:id="@+id/cbPgolen1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/p_gole"
+                        app:layout_constraintEnd_toStartOf="@+id/cbLgolen2"
+                        app:layout_constraintStart_toEndOf="@+id/cbLgolen1"
+                        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/sztuka_1"
+                        app:layout_constraintEnd_toStartOf="@+id/textView2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/sztuka_2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/textView"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </android.support.constraint.ConstraintLayout>
+
                 <EditText
                     android:id="@+id/inputUwagi"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:ems="10"
                     android:hint="@string/uwagi_do_obserwowanego_gniazda"
                     android:inputType="textMultiLine"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/switchObraczka" />
+                    app:layout_constraintTop_toBottomOf="@+id/obraczki" />
 
                 <android.support.constraint.ConstraintLayout
+                    android:id="@+id/constraintLayoutZdjecia"
                     android:layout_width="wrap_content"
-                    android:layout_height="200dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"

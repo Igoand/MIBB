@@ -10,15 +10,18 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -34,6 +37,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class Obserwacja extends AppCompatActivity {
@@ -66,7 +72,7 @@ public class Obserwacja extends AppCompatActivity {
     String stanGniazda = "";
     String obecnoscObraczki = "";
     String uwagiGniazda = "";
-    String zdjeciaGniazda = null;
+    String zdjeciaGniazda = "";
     String kartaObserwacji = "";
 
     //    Deklaracja zmiennych na potrzeby obsługi activity
@@ -89,66 +95,27 @@ public class Obserwacja extends AppCompatActivity {
     ImageView imageZdjecie;
     Button btnDodajObserwacje;
     EditText edtUwagi;
+    ConstraintLayout obraczki;
+    CheckBox chLgolen1, chLskok1, chPgolen1, chPskok1, chLgolen2, chLskok2, chPgolen2, chPskok2;
 
     public void setObecnoscObraczki(String obecnoscObraczki) {
         this.obecnoscObraczki = obecnoscObraczki;
-    }
-
-    public String getUsytuowanieGniazdaAll() {
-        return usytuowanieGniazdaAll;
     }
 
     public void setUsytuowanieGniazdaAll(String usytuowanieGniazdaAll) {
         this.usytuowanieGniazdaAll = usytuowanieGniazdaAll;
     }
 
-    public String getUsytuowanieGniazda2() {
-        return usytuowanieGniazda2;
-    }
-
-    public void setUsytuowanieGniazda2(String usytuowanieGniazda2) {
-        this.usytuowanieGniazda2 = usytuowanieGniazda2;
-    }
-
-    public String getUsytuowanieGniazda3() {
-        return usytuowanieGniazda3;
-    }
-
-    public void setUsytuowanieGniazda3(String usytuowanieGniazda3) {
-        this.usytuowanieGniazda3 = usytuowanieGniazda3;
-    }
-
-    public String getUsytuowanieGniazda4() {
-        return usytuowanieGniazda4;
-    }
-
     public void setUsytuowanieGniazda4(String usytuowanieGniazda4) {
         this.usytuowanieGniazda4 = usytuowanieGniazda4;
-    }
-
-    public String getNazwaGniazda() {
-        return nazwaGniazda;
     }
 
     public void setNazwaGniazda(String nazwaGniazda) {
         this.nazwaGniazda = nazwaGniazda;
     }
 
-    public String getLokalizacjaGniazda() {
-        return lokalizacjaGniazda;
-    }
-
     public void setLokalizacjaGniazda(String lokalizacjaGniazda) {
         this.lokalizacjaGniazda = lokalizacjaGniazda;
-    }
-
-    public String getUsytuowanieGniazda1() {
-
-        return usytuowanieGniazda1;
-    }
-
-    public void setUsytuowanieGniazda1(String usytuowanieGniazda1) {
-        this.usytuowanieGniazda1 = usytuowanieGniazda1;
     }
 
     public String getPlatformaGniazda() {
@@ -175,10 +142,6 @@ public class Obserwacja extends AppCompatActivity {
         this.stanGniazda = stanGniazda;
     }
 
-    public String getUwagiGniazda() {
-        return uwagiGniazda;
-    }
-
     public void setUwagiGniazda(String uwagiGniazda) {
         this.uwagiGniazda = uwagiGniazda;
     }
@@ -189,6 +152,22 @@ public class Obserwacja extends AppCompatActivity {
 
     public void setKartaObserwacji(String kartaObserwacji) {
         this.kartaObserwacji = kartaObserwacji;
+    }
+
+    public void setLokalizacjaX(double lokalizacjaX) {
+        this.lokalizacjaX = lokalizacjaX;
+    }
+
+    public void setLokalizacjaY(double lokalizacjaY) {
+        this.lokalizacjaY = lokalizacjaY;
+    }
+
+    public String getMiejscowosc() {
+        return this.miejscowosc;
+    }
+
+    public void setMiejscowosc(String miejscowosc) {
+        this.miejscowosc = miejscowosc;
     }
 
     @Override
@@ -216,6 +195,15 @@ public class Obserwacja extends AppCompatActivity {
         btnDodajObserwacje = findViewById(R.id.btnDodajObserwacje);
         switchObraczka = findViewById(R.id.switchObraczka);
         edtUwagi = findViewById(R.id.inputUwagi);
+        obraczki = findViewById(R.id.obraczki);
+        chLgolen1 = findViewById(R.id.cbLgolen1);
+        chLskok1 = findViewById(R.id.cbLskok1);
+        chPgolen1 = findViewById(R.id.cbPgolen1);
+        chPskok1 = findViewById(R.id.cbPskok1);
+        chLgolen2 = findViewById(R.id.cbLgolen2);
+        chLskok2 = findViewById(R.id.cbLskok2);
+        chPgolen2 = findViewById(R.id.cbPgolen2);
+        chPskok2 = findViewById(R.id.cbPskok2);
 
         btnOdczytajLokalizacjeGPS.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -225,32 +213,50 @@ public class Obserwacja extends AppCompatActivity {
 
                 // Wstawienie odczytanej miejscowosci
                 miejscowosc = getMiejscowosc();
+//                miejscowosc = "Olsztyn";
                 inputMiejscowosc.setText(miejscowosc);
 
                 // Obsługa sytuacji przypadku zmiany miejscowości w polu input
                 inputMiejscowosc.addTextChangedListener(new TextWatcher() {
                     @Override
                     public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                        lblNazwaGniazda.setText("");
+                        //lblNazwaGniazda.setText("");
                         lblOdczytanaLokalizacja.setVisibility(View.VISIBLE);
                     }
 
                     @Override
                     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                        ObslugaDB obslugaDB = new ObslugaDB(getApplicationContext());
-                        obslugaDB.execute("wyslijObserwacje", nazwaGniazda, lokalizacjaGniazda, usytuowanieGniazdaAll, platformaGniazda, efektLeguGniazda, stanGniazda, obecnoscObraczki, uwagiGniazda, zdjeciaGniazda, kartaObserwacji);
-
-                        setNazwaGniazda(inputMiejscowosc.getText().toString() + obslugaDB.execute("sprawdzNrGniazda", inputMiejscowosc.getText().toString()));
-                        lblNazwaGniazda.setText(nazwaGniazda);
-
+                        lblNazwaGniazda.setText(miejscowosc);
                     }
 
                     @Override
                     public void afterTextChanged(Editable editable) {
+                        if (inputMiejscowosc.getText().toString().equals(miejscowosc)) {
+                            lblOdczytanaLokalizacja.setText(adres + "\nSzerokość: " + lokalizacjaX + ", wysokość: " + lokalizacjaY);
+                            setLokalizacjaGniazda(adres + "\nSzerokość: " + lokalizacjaX + ", wysokość: " + lokalizacjaY);
+                            btnPokazNaMapie.setVisibility(View.VISIBLE);
+                        } else {
+                            lblOdczytanaLokalizacja.setVisibility(View.GONE);
+                            btnPokazNaMapie.setVisibility(View.GONE);
+                        }
+                        miejscowosc = inputMiejscowosc.getText().toString();
+
+                        // Połączenie do DB
+                        ObslugaDB obslugaDB = new ObslugaDB(getBaseContext().getApplicationContext());
+
+                        // Wykonanie zapytania o numer gniazda i ustawienie kolejnego wolnego
+                        try {
+                            nazwaGniazda = inputMiejscowosc.getText().toString();
+                            obslugaDB.execute("sprawdzNrGniazda", miejscowosc);
+                            int nrGniazda = Integer.parseInt(obslugaDB.get()) + 1;
+                            setNazwaGniazda(nazwaGniazda.concat(String.valueOf(nrGniazda)));
+                            lblNazwaGniazda.setText(nazwaGniazda);
+                        } catch (Exception x) {
+                            Log.d("GPS", String.valueOf(x));
+                        }
                     }
                 });
-                lblOdczytanaLokalizacja.setText(adres + "\nSzerokość: " + lokalizacjaX + ", wysokość: " + lokalizacjaY);
-                setLokalizacjaGniazda(adres + "\nSzerokość: " + lokalizacjaX + ", wysokość: " + lokalizacjaY);
+
             }
         });
 
@@ -380,9 +386,11 @@ public class Obserwacja extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (switchObraczka.isChecked()) {
-                    setObecnoscObraczki(switchObraczka.getTextOn().toString());
+                    setObecnoscObraczki(switchObraczka.getTextOn().toString() + " - ");
+                    obraczki.setVisibility(View.VISIBLE);
                 } else {
                     setObecnoscObraczki(switchObraczka.getTextOff().toString());
+                    obraczki.setVisibility(View.GONE);
                 }
             }
         });
@@ -414,7 +422,7 @@ public class Obserwacja extends AppCompatActivity {
                 if (zrobZdjecieIntent.resolveActivity(getPackageManager()) != null) {
                     startActivityForResult(zrobZdjecieIntent, REQUEST_IMAGE_CAPTURE);
                 }
-                setZdjeciaGniazda(plik.getName().toString());
+                setZdjeciaGniazda(plik.getName());
             }
         });
 
@@ -458,8 +466,16 @@ public class Obserwacja extends AppCompatActivity {
         if (!folder.exists()) {
             folder.mkdir();
         }
-        File zdjeciePlik = new File(folder, "mibb_image.jpg");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        //System.out.println(dateFormat.format(date)); //2016/11/16 12:08:43
+
+        File zdjeciePlik = new File(folder, nazwaGniazda + dateFormat.format(date));
+
+        // Tymczasowo do czasu ogarnięcia przesyłania plików
+        setZdjeciaGniazda(zdjeciePlik.getName());
         return zdjeciePlik;
+
     }
 
     public ArrayAdapter<CharSequence> przygotujAdapter(int typDancyh) {
@@ -470,6 +486,7 @@ public class Obserwacja extends AppCompatActivity {
         return adapter;
     }
 
+    //    Metody obsługujące lokalizację
     @SuppressLint("MissingPermission")
     public void dajLokalizacje() {
 
@@ -515,40 +532,47 @@ public class Obserwacja extends AppCompatActivity {
         this.adres = adres;
     }
 
-    public double getLokalizacjaX() {
-        return this.lokalizacjaX;
-    }
-
-    public void setLokalizacjaX(double lokalizacjaX) {
-        this.lokalizacjaX = lokalizacjaX;
-    }
-
-    public double getLokalizacjaY() {
-        return this.lokalizacjaY;
-    }
-
-    public void setLokalizacjaY(double lokalizacjaY) {
-        this.lokalizacjaY = lokalizacjaY;
-    }
-
-    public String getMiejscowosc() {
-        return this.miejscowosc;
-    }
-
-    public void setMiejscowosc(String miejscowosc) {
-        this.miejscowosc = miejscowosc;
+    public void odczytajDaneObraczki() {
+        if (chLgolen1.isChecked()) {
+            obecnoscObraczki = obecnoscObraczki + chLgolen1.getText() + " ";
+        }
+        if (chLskok1.isChecked()) {
+            obecnoscObraczki = obecnoscObraczki + chLskok1.getText() + " ";
+        }
+        if (chLgolen2.isChecked()) {
+            obecnoscObraczki = obecnoscObraczki + chLgolen2.getText() + " ";
+        }
+        if (chLskok2.isChecked()) {
+            obecnoscObraczki = obecnoscObraczki + chLskok2.getText() + " ";
+        }
+        if (chPgolen2.isChecked()) {
+            obecnoscObraczki = obecnoscObraczki + chPgolen2.getText() + " ";
+        }
+        if (chPskok2.isChecked()) {
+            obecnoscObraczki = obecnoscObraczki + chPskok2.getText() + " ";
+        }
+        if (chPgolen1.isChecked()) {
+            obecnoscObraczki = obecnoscObraczki + chPgolen1.getText() + " ";
+        }
+        if (chPskok1.isChecked()) {
+            obecnoscObraczki = obecnoscObraczki + chPskok1.getText() + " ";
+        }
     }
 
     public void dodajNowaObserwacje() {
         // Wysłanie danych na bazę
 
-        setZdjeciaGniazda("test");
+        if (switchObraczka.isChecked()) {
+            odczytajDaneObraczki();
+        } else obecnoscObraczki = switchObraczka.getTextOff().toString();
+
+        //setZdjeciaGniazda("test");
         ObslugaDB obslugaDB = new ObslugaDB(this);
         obslugaDB.execute("wyslijObserwacje", nazwaGniazda, lokalizacjaGniazda, usytuowanieGniazdaAll, platformaGniazda, efektLeguGniazda, stanGniazda, obecnoscObraczki, uwagiGniazda, zdjeciaGniazda, kartaObserwacji);
 
         // Restart aktywności
-/*        Intent intentObserwacja = getIntent();
+        Intent intentObserwacja = getIntent();
         finish();
-        startActivity(intentObserwacja);*/
+        startActivity(intentObserwacja);
     }
 }

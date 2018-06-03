@@ -195,4 +195,10 @@
     <string name="mariaDBhostname">jdbc:mysql:localhost/mibb</string>
     <string name="mariaDBuser">root</string>
     <string name="mariaDBpass" />
+    <string name="sztuka_1">Sztuka 1</string>
+    <string name="sztuka_2">Sztuka 2</string>
+    <string name="l_skok">L skok</string>
+    <string name="p_gole">P goleń</string>
+    <string name="l_gole">L goleń</string>
+    <string name="p_skok">P skok</string>
 </resources>
