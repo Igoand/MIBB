@@ -15,17 +15,15 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 public class KartaObserwacji extends AppCompatActivity {
 
     Operator operator = new Operator();
     PrzygotujDaneTERYT teryt = new PrzygotujDaneTERYT();
+    ObslugaDB obslugaDB = new ObslugaDB(this);
 
     // Deklaracja pól klasy
-    String daneOperatora, emailOperatora, telefonOperatora, gminaKarty, powiatKarty, wojewodztwoKarty, nrKarty;
-    Date dataKarty;
-    List<Obserwacja> listaObserwacji;
+    String daneObserwatora, emailObserwatora, telefonOperatora, gminaKarty = "test", powiatKarty, wojewodztwoKarty, dataKarty;
 
 
     TextView viewDaneOperatora;
@@ -37,21 +35,20 @@ public class KartaObserwacji extends AppCompatActivity {
     EditText inpData;
     Button btnAnuluj;
     Button btnDodajObserwacje;
+    TextView lblNumerKarty;
     int numerKarty;
-    int numerGniazda;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rejestracja_karty_obserwacji);
-        numerKarty = 0;
 
 //        Pobranie daty systemowej oraz konwersja do odpowiedniego formatu
         Date data = Calendar.getInstance().getTime();
         SimpleDateFormat formatDaty = new SimpleDateFormat("dd-MM-yyyy");
         String sformatowanaData = formatDaty.format(data);
-        Context context = getApplicationContext();
-
+        final Context context = getApplicationContext();
 
 //        Inicjalizacja pól do wyświetlenia
         viewDaneOperatora = (TextView) findViewById(R.id.textDaneOperatora);
@@ -63,6 +60,7 @@ public class KartaObserwacji extends AppCompatActivity {
         inpData = (EditText) findViewById(R.id.inputData);
         btnAnuluj = (Button) findViewById(R.id.btnAnuluj);
         btnDodajObserwacje = (Button) findViewById(R.id.btnDalej);
+        lblNumerKarty = findViewById(R.id.lblNumerKarty);
 
 
 //        Wyświeltenie zapisanych danych operatora na polach ekranu
@@ -76,7 +74,7 @@ public class KartaObserwacji extends AppCompatActivity {
         viewMailOperatora.setText(operator.odczytajDaneOperatora(context, "email"));
         edtWojewodztwo.setText(operator.odczytajDaneOperatora(context, "wojewodztwo"));
         edtPowiat.setText(operator.odczytajDaneOperatora(context, "powiat"));
-        edtGmina.setText(operator.odczytajDaneOperatora(context, "gmina"));
+        edtGmina.setText(operator.odczytajDaneOperatora(context, "gminaKarty"));
         inpData.setText(sformatowanaData);
 
 
@@ -97,6 +95,30 @@ public class KartaObserwacji extends AppCompatActivity {
             e.printStackTrace();
         }
 
+/*        edtGmina.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                obslugaDB.execute("sprawdzNrKartyObserwacji", gminaKarty);
+                try {
+                    numerKarty = Integer.parseInt(obslugaDB.get()) + 1;
+                } catch (InterruptedException | ExecutionException e) {
+                    e.printStackTrace();
+                }
+                lblNumerKarty.setText(numerKarty);
+                gminaKarty = edtGmina.getText().toString();
+            }
+        });
+        obslugaDB.execute("sprawdzNrKartyObserwacji", gminaKarty);*/
 
 //        Obsługa przycisków
         btnAnuluj.setOnClickListener(new View.OnClickListener() {
@@ -108,13 +130,28 @@ public class KartaObserwacji extends AppCompatActivity {
         btnDodajObserwacje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                daneObserwatora = viewDaneOperatora.getText().toString();
+                emailObserwatora = viewMailOperatora.getText().toString();
+                telefonOperatora = viewTelOperatora.getText().toString();
+                wojewodztwoKarty = edtWojewodztwo.getText().toString();
+                powiatKarty = edtPowiat.getText().toString();
+                gminaKarty = edtGmina.getText().toString();
+                dataKarty = inpData.getText().toString();
+
+                obslugaDB.execute("wyslijKarteObserwacji", daneObserwatora, emailObserwatora, telefonOperatora, wojewodztwoKarty, powiatKarty, gminaKarty, dataKarty);
+
+                // Restart aktywności
+                Intent intentObserwacja = getIntent();
+                finish();
+                startActivity(intentObserwacja);
+
                 startActivity(new Intent(KartaObserwacji.this, Obserwacja.class));
-                numerKarty++;
             }
         });
     }
 
-    public int dajNumerKarty(){
+    public int dajNumerKarty() {
         return numerKarty;
     }
 }

@@ -34,7 +34,7 @@ public class Operator {
         edytujDaneOperatora.putString("telefon", telefon);
         edytujDaneOperatora.putString("wojewodztwo", wojewodztwo);
         edytujDaneOperatora.putString("powiat", powiat);
-        edytujDaneOperatora.putString("gmina", gmina);
+        edytujDaneOperatora.putString("gminaKarty", gmina);
         edytujDaneOperatora.putString("miejscowosc", miejscowosc);
         edytujDaneOperatora.putString("ulica", ulica);
         edytujDaneOperatora.putString("kod", kodPocztowy);
@@ -71,7 +71,7 @@ public class Operator {
                 case "powiat":
                     wartosc = daneOperatora.getString(klucz, null);
                     break;
-                case "gmina":
+                case "gminaKarty":
                     wartosc = daneOperatora.getString(klucz, null);
                     break;
                 case "miejscowosc":

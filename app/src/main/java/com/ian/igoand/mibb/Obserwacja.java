@@ -560,12 +560,14 @@ public class Obserwacja extends AppCompatActivity {
     }
 
     public void dodajNowaObserwacje() {
-        // Wysłanie danych na bazę
 
+// Obsługa finalna danych obraczek
         if (switchObraczka.isChecked()) {
             odczytajDaneObraczki();
         } else obecnoscObraczki = switchObraczka.getTextOff().toString();
 
+        kartaObserwacji = String.valueOf(kartaObserwacjiClass.dajNumerKarty());
+        // Wysłanie danych na bazę
         //setZdjeciaGniazda("test");
         ObslugaDB obslugaDB = new ObslugaDB(this);
         obslugaDB.execute("wyslijObserwacje", nazwaGniazda, lokalizacjaGniazda, usytuowanieGniazdaAll, platformaGniazda, efektLeguGniazda, stanGniazda, obecnoscObraczki, uwagiGniazda, zdjeciaGniazda, kartaObserwacji);

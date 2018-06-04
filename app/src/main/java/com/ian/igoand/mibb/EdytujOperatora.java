@@ -60,7 +60,7 @@ public class EdytujOperatora extends AppCompatActivity {
         inputTelefon.setText(operator.odczytajDaneOperatora(context, "telefon"));
         wprowadzWojewodztwo.setText(operator.odczytajDaneOperatora(context, "wojewodztwo"));
         wprowadzPowiat.setText(operator.odczytajDaneOperatora(context, "powiat"));
-        wprowadzGmine.setText(operator.odczytajDaneOperatora(context, "gmina"));
+        wprowadzGmine.setText(operator.odczytajDaneOperatora(context, "gminaKarty"));
         wprowadzMiejscowosc.setText(operator.odczytajDaneOperatora(context, "miejscowosc"));
         inputUlica.setText(operator.odczytajDaneOperatora(context, "ulica"));
         inputKodPocztowy.setText(operator.odczytajDaneOperatora(context, "kod"));

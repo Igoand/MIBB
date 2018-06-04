@@ -20,7 +20,7 @@ public class StartMIBB extends AppCompatActivity {
     ObslugaPolWprowadzaniaDanych tekst = new ObslugaPolWprowadzaniaDanych();
 
     //    Deklaracja globalnych zmiennych
-    //String imie, nazwisko, email, telefon, ulica, kodPocztowy, nrDomu, wojewodztwo, powiat, gmina, miejscowosc;
+    //String imie, nazwisko, email, telefon, ulica, kodPocztowy, nrDomu, wojewodztwo, powiat, gminaKarty, miejscowosc;
     EditText inputImie;
     EditText inputNazwisko;
     EditText inputEmail;
