@@ -20,7 +20,6 @@
         android:supportsRtl="true"
         android:theme="@style/mibbTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
         <activity
             android:name=".StartMIBB"
             android:theme="@style/mibbTheme"
@@ -30,7 +29,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Menu"
             android:theme="@style/mibbTheme"
@@ -50,6 +48,23 @@
             android:label="Edycja danych operatora"
             android:theme="@style/mibbTheme"
             android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".PrzegladajWyslaneKarty"
+            android:label="Przegląd wysłanych kart"
+            android:theme="@style/mibbTheme" />
+        <activity
+            android:name=".ObslugaMapy"
+            android:label="@string/title_activity_obsluga_mapy">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ian.igoand.mibb.Obserwacja" />
+        </activity>
+        <activity
+            android:name=".PrzegladajSzczegolyObserwacji"
+            android:label="Szczeóły obserwacji"
+            android:theme="@style/mibbTheme">
+
+        </activity>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -62,14 +77,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
-        <activity
-            android:name=".ObslugaMapy"
-            android:label="@string/title_activity_obsluga_mapy">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ian.igoand.mibb.Obserwacja" />
-        </activity>
     </application>
 
 </manifest>

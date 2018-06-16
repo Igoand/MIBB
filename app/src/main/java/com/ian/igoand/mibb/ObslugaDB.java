@@ -3,6 +3,8 @@ package com.ian.igoand.mibb;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -19,14 +21,16 @@ import okhttp3.OkHttpClient;
 
 import static java.net.URLEncoder.encode;
 
-public class ObslugaDB extends AsyncTask<String, Void, String> {
+public class ObslugaDB extends AsyncTask<String, Integer, String> {
     Context context;
+    ProgressBar pb;
     AlertDialog alertDialog;
     String wynik = "";
     OkHttpClient okHttpClient = new OkHttpClient();
 
-    ObslugaDB(Context ctx) {
+    ObslugaDB(Context ctx, ProgressBar progressBar) {
         this.context = ctx;
+        this.pb = progressBar;
     }
 
     @Override
@@ -38,20 +42,22 @@ public class ObslugaDB extends AsyncTask<String, Void, String> {
         String restSprawdzGniazdo_url = adresSerwera + "/restSprawdzGniazdo.php";
         String restInsertKartaObserwacji_url = adresSerwera + "/restInsertKartaObserwacji.php";
         String restSprawdzKarte_url = adresSerwera + "/restSprawdzKarte.php";
-
+        String restSelectObserwacja = adresSerwera + "/restSelectObserwacja.php";
+        publishProgress(10);
         // Decyzja o wyborze usługi PHP
         if (usluga.equals("wyslijObserwacje")) {
+            publishProgress(20);
             try {
                 URL url = new URL(restInsertObserwacja_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 httpURLConnection.setDoInput(true);
-
+                publishProgress(30);
                 // Obsługa przekazywanych do usługi parametrów
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-
+                publishProgress(40);
                 // Parametry przekazane do PHP
                 String post_data = encode("nazwaGniazda", "UTF-8") + "=" + encode(params[1], "UTF-8") + "&" +
                         encode("lokalizacjaGniazda", "UTF-8") + "=" + encode(params[2], "UTF-8") + "&" +
@@ -66,7 +72,7 @@ public class ObslugaDB extends AsyncTask<String, Void, String> {
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
-
+                publishProgress(80);
                 InputStream inputStream = httpURLConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
 
@@ -77,11 +83,10 @@ public class ObslugaDB extends AsyncTask<String, Void, String> {
                 while ((line = bufferedReader.readLine()) != null) {
                     result.append(line);
                 }
-
                 bufferedReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();
-
+                publishProgress(100);
                 return result.toString();
 
             } catch (IOException e) {
@@ -92,29 +97,29 @@ public class ObslugaDB extends AsyncTask<String, Void, String> {
             return wynik;
         } else if (usluga.equals("wyslijKarteObserwacji")) {
             try {
+                publishProgress(20);
                 URL url = new URL(restInsertKartaObserwacji_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 httpURLConnection.setDoInput(true);
-
+                publishProgress(30);
                 // Obsługa przekazywanych do usługi parametrów
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-
+                publishProgress(40);
                 // Parametry przekazane do PHP
                 String post_data = dajURLenoder("obserwator", params[1]) + "&" +
                         dajURLenoder("email", params[2]) + "&" +
                         dajURLenoder("telefon", params[3]) + "&" +
                         dajURLenoder("wojewodztwo", params[4]) + "&" +
                         dajURLenoder("powiat", params[5]) + "&" +
-                        dajURLenoder("gmina", params[6]) + "&" +
-                        dajURLenoder("data_obserwacji", params[7]);
-
+                        dajURLenoder("gmina", params[6]);
+                publishProgress(50);
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
-
+                publishProgress(60);
                 InputStream inputStream = httpURLConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
 
@@ -125,11 +130,11 @@ public class ObslugaDB extends AsyncTask<String, Void, String> {
                 while ((line = bufferedReader.readLine()) != null) {
                     result.append(line);
                 }
-
+                publishProgress(80);
                 bufferedReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();
-
+                publishProgress(100);
                 return result.toString();
 
             } catch (IOException e) {
@@ -139,6 +144,54 @@ public class ObslugaDB extends AsyncTask<String, Void, String> {
         } else if (usluga.equals("sprawdzNrKartyObserwacji")) {
             wynik = przygotujPOST(restSprawdzKarte_url, "gminaKarty", params[1]);
             return wynik;
+        } else if (usluga.equals("wyszukajObserwacje")) {
+/*            publishProgress(50);
+            wynik = przygotujPOST(restSelectObserwacja, "idKartaObserwacji", params[1]);
+            publishProgress(100);
+            return wynik;*/
+            try {
+                publishProgress(20);
+                URL url = new URL(restSelectObserwacja);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.setDoInput(true);
+                publishProgress(30);
+
+                // Obsługa przekazywanych do usługi parametrów
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+                publishProgress(40);
+
+                // Parametry przekazane do PHP
+                String post_data = dajURLenoder("idKartaObserwacji", params[1]) + "&" +
+                        dajURLenoder("nazwaGminy", params[2]);
+                publishProgress(50);
+                bufferedWriter.write(post_data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                publishProgress(60);
+                InputStream inputStream = httpURLConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+
+                // Odczyt danych zwróconych przez PHP
+                StringBuilder result = new StringBuilder();
+                String line;
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    result.append(line);
+                }
+                publishProgress(80);
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                publishProgress(100);
+                return result.toString();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
         return wynik;
     }
@@ -147,17 +200,21 @@ public class ObslugaDB extends AsyncTask<String, Void, String> {
     protected void onPreExecute() {
         alertDialog = new AlertDialog.Builder(context).create();
         alertDialog.setTitle("Status połączenia");
+        pb.setMax(100);
+        pb.setVisibility(View.VISIBLE);
     }
 
     @Override
     protected void onPostExecute(String result) {
         alertDialog.setMessage(result);
-        //alertDialog.show();
+//        alertDialog.show();
+        pb.setVisibility(View.GONE);
     }
 
     @Override
-    protected void onProgressUpdate(Void... values) {
+    protected void onProgressUpdate(Integer... values) {
         super.onProgressUpdate(values);
+        pb.setProgress(values[0]);
     }
 
     private String przygotujPOST(String urlUslugi, String zmiennaPHP, String... param) {

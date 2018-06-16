@@ -36,5 +36,11 @@ public class Menu extends AppCompatActivity {
                 startActivity(new Intent(Menu.this, EdytujOperatora.class));
             }
         });
+        menuPrzegladajObserwacje.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Menu.this, PrzegladajWyslaneKarty.class));
+            }
+        });
     }
 }

@@ -26,6 +26,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -51,7 +52,6 @@ public class Obserwacja extends AppCompatActivity {
 
     //    Tworzenie obiektów
     PrzygotujDaneTERYT teryt = new PrzygotujDaneTERYT();
-    KartaObserwacji kartaObserwacjiClass = new KartaObserwacji();
     Geocoder geocoder;
 
     // Zmienne pomocnicze
@@ -97,6 +97,7 @@ public class Obserwacja extends AppCompatActivity {
     EditText edtUwagi;
     ConstraintLayout obraczki;
     CheckBox chLgolen1, chLskok1, chPgolen1, chPskok1, chLgolen2, chLskok2, chPgolen2, chPskok2;
+    ProgressBar pbObserwacja;
 
     public void setObecnoscObraczki(String obecnoscObraczki) {
         this.obecnoscObraczki = obecnoscObraczki;
@@ -150,10 +151,6 @@ public class Obserwacja extends AppCompatActivity {
         this.zdjeciaGniazda = zdjeciaGniazda;
     }
 
-    public void setKartaObserwacji(String kartaObserwacji) {
-        this.kartaObserwacji = kartaObserwacji;
-    }
-
     public void setLokalizacjaX(double lokalizacjaX) {
         this.lokalizacjaX = lokalizacjaX;
     }
@@ -204,6 +201,7 @@ public class Obserwacja extends AppCompatActivity {
         chLskok2 = findViewById(R.id.cbLskok2);
         chPgolen2 = findViewById(R.id.cbPgolen2);
         chPskok2 = findViewById(R.id.cbPskok2);
+        pbObserwacja = findViewById(R.id.progressBarObserwacja);
 
         btnOdczytajLokalizacjeGPS.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -213,14 +211,12 @@ public class Obserwacja extends AppCompatActivity {
 
                 // Wstawienie odczytanej miejscowosci
                 miejscowosc = getMiejscowosc();
-//                miejscowosc = "Olsztyn";
                 inputMiejscowosc.setText(miejscowosc);
 
                 // Obsługa sytuacji przypadku zmiany miejscowości w polu input
                 inputMiejscowosc.addTextChangedListener(new TextWatcher() {
                     @Override
                     public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                        //lblNazwaGniazda.setText("");
                         lblOdczytanaLokalizacja.setVisibility(View.VISIBLE);
                     }
 
@@ -242,7 +238,7 @@ public class Obserwacja extends AppCompatActivity {
                         miejscowosc = inputMiejscowosc.getText().toString();
 
                         // Połączenie do DB
-                        ObslugaDB obslugaDB = new ObslugaDB(getBaseContext().getApplicationContext());
+                        ObslugaDB obslugaDB = new ObslugaDB(getBaseContext().getApplicationContext(), pbObserwacja);
 
                         // Wykonanie zapytania o numer gniazda i ustawienie kolejnego wolnego
                         try {
@@ -426,9 +422,6 @@ public class Obserwacja extends AppCompatActivity {
             }
         });
 
-        // Przekazanie numeru karty obserwacji
-        setKartaObserwacji(String.valueOf(kartaObserwacjiClass.dajNumerKarty()));
-
         btnDodajObserwacje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -559,6 +552,10 @@ public class Obserwacja extends AppCompatActivity {
         }
     }
 
+    public void setKartaObserwacji(String kartaObserwacji) {
+        this.kartaObserwacji = kartaObserwacji;
+    }
+
     public void dodajNowaObserwacje() {
 
 // Obsługa finalna danych obraczek
@@ -566,10 +563,15 @@ public class Obserwacja extends AppCompatActivity {
             odczytajDaneObraczki();
         } else obecnoscObraczki = switchObraczka.getTextOff().toString();
 
-        kartaObserwacji = String.valueOf(kartaObserwacjiClass.dajNumerKarty());
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            setKartaObserwacji(bundle.getString("numerKarty"));
+            kartaObserwacji = kartaObserwacji.replaceAll("\\D+", "");
+        }
+
         // Wysłanie danych na bazę
         //setZdjeciaGniazda("test");
-        ObslugaDB obslugaDB = new ObslugaDB(this);
+        ObslugaDB obslugaDB = new ObslugaDB(this, pbObserwacja);
         obslugaDB.execute("wyslijObserwacje", nazwaGniazda, lokalizacjaGniazda, usytuowanieGniazdaAll, platformaGniazda, efektLeguGniazda, stanGniazda, obecnoscObraczki, uwagiGniazda, zdjeciaGniazda, kartaObserwacji);
 
         // Restart aktywności

@@ -8,36 +8,51 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.ExecutionException;
 
 public class KartaObserwacji extends AppCompatActivity {
 
     Operator operator = new Operator();
     PrzygotujDaneTERYT teryt = new PrzygotujDaneTERYT();
-    ObslugaDB obslugaDB = new ObslugaDB(this);
+
 
     // Deklaracja pól klasy
-    String daneObserwatora, emailObserwatora, telefonOperatora, gminaKarty = "test", powiatKarty, wojewodztwoKarty, dataKarty;
+    String daneObserwatora;
+    String emailObserwatora;
+    String telefonOperatora;
+    String gminaKarty;
+    String powiatKarty;
+    String wojewodztwoKarty;
+    String numerKarty;
 
-
+    // Deklaracja zmiennych obiektów GUI
+    ObslugaDB obslugaDB;
     TextView viewDaneOperatora;
     TextView viewTelOperatora;
     TextView viewMailOperatora;
     AutoCompleteTextView edtWojewodztwo;
     AutoCompleteTextView edtPowiat;
     AutoCompleteTextView edtGmina;
-    EditText inpData;
     Button btnAnuluj;
     Button btnDodajObserwacje;
     TextView lblNumerKarty;
-    int numerKarty;
+    ProgressBar progressBar;
 
+    public String getNumerKarty() {
+        return numerKarty;
+    }
+
+    public KartaObserwacji setNumerKarty(String numerKarty) {
+        this.numerKarty = numerKarty;
+        return this;
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,11 +72,12 @@ public class KartaObserwacji extends AppCompatActivity {
         edtWojewodztwo = (AutoCompleteTextView) findViewById(R.id.inputWojewodztwo);
         edtPowiat = (AutoCompleteTextView) findViewById(R.id.inputPowiat);
         edtGmina = (AutoCompleteTextView) findViewById(R.id.inputGmina);
-        inpData = (EditText) findViewById(R.id.inputData);
         btnAnuluj = (Button) findViewById(R.id.btnAnuluj);
         btnDodajObserwacje = (Button) findViewById(R.id.btnDalej);
         lblNumerKarty = findViewById(R.id.lblNumerKarty);
+        progressBar = findViewById(R.id.progressBar);
 
+        obslugaDB = new ObslugaDB(this, progressBar);
 
 //        Wyświeltenie zapisanych danych operatora na polach ekranu
         viewDaneOperatora.setText(operator.odczytajDaneOperatora(context, "imie").concat(" ")
@@ -75,7 +91,6 @@ public class KartaObserwacji extends AppCompatActivity {
         edtWojewodztwo.setText(operator.odczytajDaneOperatora(context, "wojewodztwo"));
         edtPowiat.setText(operator.odczytajDaneOperatora(context, "powiat"));
         edtGmina.setText(operator.odczytajDaneOperatora(context, "gminaKarty"));
-        inpData.setText(sformatowanaData);
 
 
         // Dodanie możliwości wprowadzania danych teryt
@@ -95,31 +110,6 @@ public class KartaObserwacji extends AppCompatActivity {
             e.printStackTrace();
         }
 
-/*        edtGmina.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                obslugaDB.execute("sprawdzNrKartyObserwacji", gminaKarty);
-                try {
-                    numerKarty = Integer.parseInt(obslugaDB.get()) + 1;
-                } catch (InterruptedException | ExecutionException e) {
-                    e.printStackTrace();
-                }
-                lblNumerKarty.setText(numerKarty);
-                gminaKarty = edtGmina.getText().toString();
-            }
-        });
-        obslugaDB.execute("sprawdzNrKartyObserwacji", gminaKarty);*/
-
 //        Obsługa przycisków
         btnAnuluj.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,31 +117,34 @@ public class KartaObserwacji extends AppCompatActivity {
                 startActivity(new Intent(KartaObserwacji.this, Menu.class));
             }
         });
+
         btnDodajObserwacje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 daneObserwatora = viewDaneOperatora.getText().toString();
                 emailObserwatora = viewMailOperatora.getText().toString();
                 telefonOperatora = viewTelOperatora.getText().toString();
                 wojewodztwoKarty = edtWojewodztwo.getText().toString();
                 powiatKarty = edtPowiat.getText().toString();
                 gminaKarty = edtGmina.getText().toString();
-                dataKarty = inpData.getText().toString();
 
-                obslugaDB.execute("wyslijKarteObserwacji", daneObserwatora, emailObserwatora, telefonOperatora, wojewodztwoKarty, powiatKarty, gminaKarty, dataKarty);
+                obslugaDB.execute("wyslijKarteObserwacji", daneObserwatora, emailObserwatora, telefonOperatora, wojewodztwoKarty, powiatKarty, gminaKarty);
+                try {
+                    setNumerKarty(String.valueOf(obslugaDB.get()));
+                } catch (InterruptedException | ExecutionException e) {
+                    e.printStackTrace();
+                }
 
                 // Restart aktywności
                 Intent intentObserwacja = getIntent();
                 finish();
                 startActivity(intentObserwacja);
 
-                startActivity(new Intent(KartaObserwacji.this, Obserwacja.class));
+                Intent intentDodajObserwacjeDoKarty = new Intent(KartaObserwacji.this, Obserwacja.class);
+                intentDodajObserwacjeDoKarty.putExtra("numerKarty", getNumerKarty());
+                startActivity(intentDodajObserwacjeDoKarty);
+                finish();
             }
         });
-    }
-
-    public int dajNumerKarty() {
-        return numerKarty;
     }
 }
