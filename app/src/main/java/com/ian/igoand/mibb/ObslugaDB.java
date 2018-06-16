@@ -31,7 +31,7 @@ public class ObslugaDB extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... params) {
-        String adresSerwera = "https://b22faa58.ngrok.io";
+        String adresSerwera = "https://10368491.ngrok.io";
         String usluga = params[0];
         //String dodajOperacje_url = adresSerwera + "/statusDanychObserwacji.php";
         String restInsertObserwacja_url = adresSerwera + "/restInsertObserwacja.php";
