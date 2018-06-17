@@ -3,7 +3,6 @@ package com.ian.igoand.mibb;
 import android.content.Context;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
