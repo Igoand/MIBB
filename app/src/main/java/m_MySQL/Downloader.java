@@ -65,7 +65,7 @@ public class Downloader extends AsyncTask<Void, Void, String> {
             StringBuffer jsonData = new StringBuffer();
 
             while ((line = bufferedReader.readLine()) != null) {
-                jsonData.append(line + "\n");
+                jsonData.append(line).append("\n");
             }
 
             bufferedReader.close();

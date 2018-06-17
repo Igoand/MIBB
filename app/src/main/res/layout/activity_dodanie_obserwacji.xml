@@ -55,9 +55,10 @@
                 android:id="@+id/lblNazwaGniazda"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="4dp"
+                android:padding="4dp"
                 android:text="@string/lblNazwaGniazda"
                 android:textColor="@color/tresc"
+                android:textSize="@dimen/naglowek"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="34dp"
                 tools:layout_editor_absoluteY="100dp" />
@@ -110,7 +111,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/btnPobierzLokalizacje"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@android:drawable/ic_dialog_map" />
+                    app:srcCompat="@android:drawable/ic_dialog_map"
+                    android:contentDescription="@string/poka_na_mapie" />
 
             </android.support.constraint.ConstraintLayout>
 
@@ -286,10 +288,14 @@
 
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/obraczki"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/switchObraczka">
 
                     <CheckBox
@@ -361,7 +367,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="8dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:text="@string/p_skok"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -373,7 +380,8 @@
                         android:id="@+id/cbPgolen1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:text="@string/p_gole"
                         app:layout_constraintEnd_toStartOf="@+id/cbLgolen2"
@@ -415,67 +423,17 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/obraczki" />
 
-                <android.support.constraint.ConstraintLayout
-                    android:id="@+id/constraintLayoutZdjecia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/inputUwagi">
-
-                    <ImageView
-                        android:id="@+id/imgZdjecie"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        app:layout_constraintEnd_toStartOf="@+id/imgZdjecie2"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                    <ImageView
-                        android:id="@+id/imgZdjecie2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        app:layout_constraintEnd_toEndOf="parent" />
-                </android.support.constraint.ConstraintLayout>
-
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/btnZrobZdjecie"
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:elevation="0dp"
-
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/inputUwagi"
-                    app:srcCompat="@android:drawable/ic_menu_camera" />
-
             </android.support.constraint.ConstraintLayout>
 
             <Button
                 android:id="@+id/btnDodajObserwacje"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
                 android:text="@string/dodaj_obserwacj"
-                tools:layout_editor_absoluteX="31dp"
-                tools:layout_editor_absoluteY="387dp" />
-
-            <Button
-                android:id="@+id/btnZapiszObserwacje"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/zapisz_obserwacj" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
         </LinearLayout>
     </ScrollView>

@@ -110,8 +110,7 @@ public class EdytujOperatora extends AppCompatActivity {
                 operator.nrDomu = tekst.pobierzStringPola(inputNrDomu);
 
                 operator.zapiszOperatora(context);
-                Toast toast = new Toast(context);
-                toast.makeText(getApplicationContext(), "Pomyślnie zmieniono dane Operatora", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Pomyślnie zmieniono dane Operatora", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(EdytujOperatora.this, com.ian.igoand.mibb.Menu.class));
             }
         });

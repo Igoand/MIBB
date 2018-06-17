@@ -12,7 +12,7 @@ import m_MySQL.DataParser;
 
 public class PrzegladajSzczegolyObserwacji extends AppCompatActivity {
     ObslugaDB obslugaDB;
-    int idKarty;
+    String idKarty;
     String nazwaGminy;
 
     ListView listViewObserwacje;
@@ -27,19 +27,17 @@ public class PrzegladajSzczegolyObserwacji extends AppCompatActivity {
         obslugaDB = new ObslugaDB(this, progressBar);
         Bundle bundle = getIntent().getExtras();
 
-        idKarty = bundle.getInt("idKarty");
+        idKarty = bundle.getString("idKarty");
         nazwaGminy = bundle.getString("nazwaGminy");
         String idKartyStr = String.valueOf(idKarty);
 
-        obslugaDB.execute("wyszukajObserwacje", idKartyStr, nazwaGminy);
+        obslugaDB.execute("wyszukajObserwacje", idKartyStr);
         try {
-            String json = obslugaDB.get().toString();
+            String json = obslugaDB.get();
             new DataParser(this, json, listViewObserwacje, "obserwacja").execute();
 //            Toast.makeText(getApplicationContext(), test, Toast.LENGTH_LONG).show();
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
-
-
     }
 }

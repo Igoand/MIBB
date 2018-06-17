@@ -27,7 +27,6 @@ public class DataParser extends AsyncTask<Void, Void, Boolean> {
         this.zakresDanych = zakresDanych;
     }
 
-
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -74,7 +73,7 @@ public class DataParser extends AsyncTask<Void, Void, Boolean> {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     jsonObject = jsonArray.getJSONObject(i);
                     String rekord = "";
-                    rekord += "Data obserwacji:      " + dajWartosc("dataObserwacji", jsonObject) + "\n";
+                    rekord += "nazwaGniazda:      " + dajWartosc("nazwaGniazda", jsonObject) + "\n";
                     rekord += "Lokalizacja gniazda   : " + dajWartosc("lokalizacjaGniazda", jsonObject) + "\n";
                     rekord += "Usytuowanie gniazda: " + dajWartosc("usytuowanieGniazda", jsonObject) + "\n";
                     rekord += "Platfnorma:  " + dajWartosc("platformaGniazda", jsonObject) + "\n";
@@ -84,17 +83,13 @@ public class DataParser extends AsyncTask<Void, Void, Boolean> {
                     rekord += "Uwagi: " + dajWartosc("uwagi", jsonObject);
                     odkodowaneDaneLista.add(rekord);
                 }
-
-                //return odkodowaneDaneLista.add(rekord);
             }
             return true;
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return false;
     }
-
     private String dajWartosc(String kolumna, JSONObject j) throws JSONException {
         return j.getString(kolumna);
     }

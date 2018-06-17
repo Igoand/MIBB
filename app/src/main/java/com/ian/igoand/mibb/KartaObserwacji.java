@@ -4,24 +4,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
 public class KartaObserwacji extends AppCompatActivity {
 
     Operator operator = new Operator();
     PrzygotujDaneTERYT teryt = new PrzygotujDaneTERYT();
-
 
     // Deklaracja pól klasy
     String daneObserwatora;
@@ -44,14 +42,14 @@ public class KartaObserwacji extends AppCompatActivity {
     Button btnDodajObserwacje;
     TextView lblNumerKarty;
     ProgressBar progressBar;
+    AlertDialog alertDialog;
 
     public String getNumerKarty() {
         return numerKarty;
     }
 
-    public KartaObserwacji setNumerKarty(String numerKarty) {
+    public void setNumerKarty(String numerKarty) {
         this.numerKarty = numerKarty;
-        return this;
     }
 
     @Override
@@ -60,22 +58,21 @@ public class KartaObserwacji extends AppCompatActivity {
         setContentView(R.layout.activity_rejestracja_karty_obserwacji);
 
 //        Pobranie daty systemowej oraz konwersja do odpowiedniego formatu
-        Date data = Calendar.getInstance().getTime();
-        SimpleDateFormat formatDaty = new SimpleDateFormat("dd-MM-yyyy");
-        String sformatowanaData = formatDaty.format(data);
         final Context context = getApplicationContext();
 
 //        Inicjalizacja pól do wyświetlenia
-        viewDaneOperatora = (TextView) findViewById(R.id.textDaneOperatora);
-        viewTelOperatora = (TextView) findViewById(R.id.textNrTel);
-        viewMailOperatora = (TextView) findViewById(R.id.textMail);
-        edtWojewodztwo = (AutoCompleteTextView) findViewById(R.id.inputWojewodztwo);
-        edtPowiat = (AutoCompleteTextView) findViewById(R.id.inputPowiat);
-        edtGmina = (AutoCompleteTextView) findViewById(R.id.inputGmina);
-        btnAnuluj = (Button) findViewById(R.id.btnAnuluj);
-        btnDodajObserwacje = (Button) findViewById(R.id.btnDalej);
+        viewDaneOperatora = findViewById(R.id.textDaneOperatora);
+        viewTelOperatora = findViewById(R.id.textNrTel);
+        viewMailOperatora = findViewById(R.id.textMail);
+        edtWojewodztwo = findViewById(R.id.inputWojewodztwo);
+        edtPowiat = findViewById(R.id.inputPowiat);
+        edtGmina = findViewById(R.id.inputGmina);
+        btnAnuluj = findViewById(R.id.btnAnuluj);
+        btnDodajObserwacje = findViewById(R.id.btnDalej);
         lblNumerKarty = findViewById(R.id.lblNumerKarty);
         progressBar = findViewById(R.id.progressBar);
+        alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("Stetus operacji");
 
         obslugaDB = new ObslugaDB(this, progressBar);
 
@@ -134,6 +131,10 @@ public class KartaObserwacji extends AppCompatActivity {
                 } catch (InterruptedException | ExecutionException e) {
                     e.printStackTrace();
                 }
+//                alertDialog.setMessage("Dodano nową kartę obserwacji: " + getNumerKarty());
+//                alertDialog.show();
+
+                Toast.makeText(getApplicationContext(), "Dodano nową kartę obserwacji: " + numerKarty, Toast.LENGTH_LONG).show();
 
                 // Restart aktywności
                 Intent intentObserwacja = getIntent();

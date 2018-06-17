@@ -6,9 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -36,16 +34,11 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
-import java.io.File;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 public class Obserwacja extends AppCompatActivity {
 
-    static final int REQUEST_IMAGE_CAPTURE = 1;
     public FusedLocationProviderClient klientLokalizacji;
     public double szerokosc, wysokosc;
     public String miejscowosc = "";
@@ -91,8 +84,6 @@ public class Obserwacja extends AppCompatActivity {
     Spinner spinnerStanGniazda;
     Switch switchStanGniazda;
     Switch switchObraczka;
-    FloatingActionButton btnZrobZdjecia;
-    ImageView imageZdjecie;
     Button btnDodajObserwacje;
     EditText edtUwagi;
     ConstraintLayout obraczki;
@@ -147,10 +138,6 @@ public class Obserwacja extends AppCompatActivity {
         this.uwagiGniazda = uwagiGniazda;
     }
 
-    public void setZdjeciaGniazda(String zdjeciaGniazda) {
-        this.zdjeciaGniazda = zdjeciaGniazda;
-    }
-
     public void setLokalizacjaX(double lokalizacjaX) {
         this.lokalizacjaX = lokalizacjaX;
     }
@@ -187,8 +174,6 @@ public class Obserwacja extends AppCompatActivity {
         spinnerEfektLegu = findViewById(R.id.spinnerEfektLegu);
         spinnerStanGniazda = findViewById(R.id.spinnerStanGniazda);
         switchStanGniazda = findViewById(R.id.switchStanGniazda);
-        btnZrobZdjecia = findViewById(R.id.btnZrobZdjecie);
-        imageZdjecie = findViewById(R.id.imgZdjecie);
         btnDodajObserwacje = findViewById(R.id.btnDodajObserwacje);
         switchObraczka = findViewById(R.id.switchObraczka);
         edtUwagi = findViewById(R.id.inputUwagi);
@@ -225,6 +210,7 @@ public class Obserwacja extends AppCompatActivity {
                         lblNazwaGniazda.setText(miejscowosc);
                     }
 
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void afterTextChanged(Editable editable) {
                         if (inputMiejscowosc.getText().toString().equals(miejscowosc)) {
@@ -373,7 +359,6 @@ public class Obserwacja extends AppCompatActivity {
                     spinnerStanGniazda.setAdapter(przygotujAdapter(R.array.stanGniazda));
                 } else spinnerStanGniazda.setVisibility(View.GONE);
                 setStanGniazda(switchStanGniazda.getTextOff().toString() + " - " + spinnerStanGniazda.getSelectedItem().toString());
-                ;
             }
         });
 
@@ -409,19 +394,6 @@ public class Obserwacja extends AppCompatActivity {
             }
         });
 
-        btnZrobZdjecia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent zrobZdjecieIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                File plik = getZdjecie();
-                zrobZdjecieIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(plik));
-                if (zrobZdjecieIntent.resolveActivity(getPackageManager()) != null) {
-                    startActivityForResult(zrobZdjecieIntent, REQUEST_IMAGE_CAPTURE);
-                }
-                setZdjeciaGniazda(plik.getName());
-            }
-        });
-
         btnDodajObserwacje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -431,17 +403,10 @@ public class Obserwacja extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        String patch = "sdcard/MIBB-obrazy/mibb_image.jpg";
-        imageZdjecie.setImageDrawable(Drawable.createFromPath(patch));
-        imageZdjecie.setVisibility(View.VISIBLE);
-    }
-
     public String dajWartoscSpinnera(Spinner spinner) {
-        String wybranyElement = "";
+        String wybranyElement;
         wybranyElement = spinner.getItemAtPosition(spinner.getSelectedItemPosition()).toString();
-        if (spinner.getVisibility() == 8) {
+        if (spinner.getVisibility() == View.VISIBLE) {
             wybranyElement = "";
         } else if (wybranyElement.contains(" ")) {
             wybranyElement = wybranyElement.substring(0, wybranyElement.indexOf(" "));
@@ -451,24 +416,6 @@ public class Obserwacja extends AppCompatActivity {
 
     public void ustawUsytuowanieGniazda(Spinner spr1, Spinner spr2, Spinner spr3, Spinner spr4, EditText nazwaGnz) {
         usytuowanieGniazdaAll = dajWartoscSpinnera(spr1) + " " + dajWartoscSpinnera(spr2) + dajWartoscSpinnera(spr3) + dajWartoscSpinnera(spr4) + " " + nazwaGnz.getText().toString();
-    }
-
-    public File getZdjecie() {
-        File folder = new File("sdcard/MIBB-obrazy");
-
-        if (!folder.exists()) {
-            folder.mkdir();
-        }
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();
-        //System.out.println(dateFormat.format(date)); //2016/11/16 12:08:43
-
-        File zdjeciePlik = new File(folder, nazwaGniazda + dateFormat.format(date));
-
-        // Tymczasowo do czasu ogarnięcia przesyłania plików
-        setZdjeciaGniazda(zdjeciePlik.getName());
-        return zdjeciePlik;
-
     }
 
     public ArrayAdapter<CharSequence> przygotujAdapter(int typDancyh) {
@@ -566,13 +513,12 @@ public class Obserwacja extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             setKartaObserwacji(bundle.getString("numerKarty"));
-            kartaObserwacji = kartaObserwacji.replaceAll("\\D+", "");
         }
 
         // Wysłanie danych na bazę
-        //setZdjeciaGniazda("test");
         ObslugaDB obslugaDB = new ObslugaDB(this, pbObserwacja);
         obslugaDB.execute("wyslijObserwacje", nazwaGniazda, lokalizacjaGniazda, usytuowanieGniazdaAll, platformaGniazda, efektLeguGniazda, stanGniazda, obecnoscObraczki, uwagiGniazda, zdjeciaGniazda, kartaObserwacji);
+        Toast.makeText(getApplicationContext(), "Pomyślnie wprowadzono obserwację gniazda nr: " + nazwaGniazda, Toast.LENGTH_LONG).show();
 
         // Restart aktywności
         Intent intentObserwacja = getIntent();

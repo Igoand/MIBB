@@ -21,8 +21,7 @@ public class Operator {
     String nrDomu;
 
     // Nazwa pliku SharedPreferences
-    String plikOperatora = "DaneOperatora";
-
+    private String plikOperatora = "DaneOperatora";
     public void zapiszOperatora(Context context) {
         SharedPreferences daneOperatora = context.getSharedPreferences(plikOperatora, Activity.MODE_PRIVATE);
 
@@ -42,16 +41,15 @@ public class Operator {
         edytujDaneOperatora.putString("czyIstnieje", "true");
 
 //        Zapisanie pól obiektu do pliku lokalnego pliku SharedPreferenes
-        edytujDaneOperatora.commit();
+        edytujDaneOperatora.apply();
 
         Log.i("succes", "Udało się zapisać dane");
     }
 
     public String odczytajDaneOperatora(Context context, String klucz) {
-        String wartosc = "";
+        String wartosc;
         try {
             SharedPreferences daneOperatora = context.getSharedPreferences(plikOperatora, Activity.MODE_PRIVATE);
-
             switch (klucz) {
                 case "imie":
                     wartosc = daneOperatora.getString(klucz, null);
@@ -94,8 +92,7 @@ public class Operator {
             }
         } catch (Error e) {
             return "Wystąpił problem z odczytem danych " + e;
-        } finally {
-            return wartosc;
         }
+        return wartosc;
     }
 }

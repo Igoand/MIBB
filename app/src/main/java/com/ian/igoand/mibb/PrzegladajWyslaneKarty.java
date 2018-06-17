@@ -14,7 +14,7 @@ import m_MySQL.Downloader;
 public class PrzegladajWyslaneKarty extends AppCompatActivity {
 
 
-    final String urlAddress = "https://10368491.ngrok.io/restSelectKartaObserwacji.php";
+    final String urlAddress = "https://a491e0ba.ngrok.io/restSelectKartaObserwacji.php";
     ListView listView;
 
     @Override
@@ -33,17 +33,11 @@ public class PrzegladajWyslaneKarty extends AppCompatActivity {
 
                 int idx = idKartyStr.indexOf("Numer Karty:");
                 idKartyStr = idKartyStr.substring(idx);
-                idKartyStr = idKartyStr.replaceAll("\\D+", "").trim();
-                int idKarty = Integer.valueOf(idKartyStr);
+                idx = idKartyStr.indexOf(": ");
+                idKartyStr = idKartyStr.substring(idx+2);
 
-                idKartyStr = (String) ((TextView) view).getText();
-                int idxGmina1 = idKartyStr.indexOf("Gmina:");
-                int idxGmina2 = idKartyStr.indexOf("Data wprowadzenia karty:");
-                idKartyStr = idKartyStr.substring(idxGmina1, idxGmina2);
-                String nazwaGminy = idKartyStr.replaceAll("\\D+", "").trim();
+                intentSzczegolyObserwacji.putExtra("idKarty", idKartyStr);
 
-                intentSzczegolyObserwacji.putExtra("idKarty", idKarty);
-                intentSzczegolyObserwacji.putExtra("nazwaGminy", nazwaGminy);
                 startActivity(intentSzczegolyObserwacji);
             }
         });

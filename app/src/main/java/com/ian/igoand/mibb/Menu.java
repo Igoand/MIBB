@@ -10,7 +10,6 @@ public class Menu extends AppCompatActivity {
 
     Button menuWprowadzObserwacje;
     Button menuPrzegladajObserwacje;
-    Button menuWyslijObserwacje;
     Button menuZmienDaneOperatora;
 
     @Override
@@ -21,7 +20,6 @@ public class Menu extends AppCompatActivity {
 
         menuWprowadzObserwacje = findViewById(R.id.menuBtnWprowadzObserwacje);
         menuPrzegladajObserwacje = findViewById(R.id.menuBtnPrzegladajObserwacje);
-        menuWyslijObserwacje = findViewById(R.id.menuBtnWyslijKarte);
         menuZmienDaneOperatora = findViewById(R.id.menuBtnZmienDaneOper);
 
         menuWprowadzObserwacje.setOnClickListener(new View.OnClickListener() {
